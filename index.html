@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensayo de Dureza Vickers: Guía Interactiva</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Serene Tech (Background: #FDFDFB, Text: #333333, Primary: #2D5A6C, Accent: #A58D7B) -->
+    <!-- Application Structure Plan: A single-page, multi-section layout designed for guided discovery. It starts with a broad introduction, then drills down into the 'how' (interactive procedure), 'what' (formula calculator), and 'what for' (materials comparison and applications). This task-oriented flow (Understand -> Calculate -> Compare -> Apply) is more intuitive for learning than a linear report structure, encouraging interaction at each stage. Navigation is handled by a sticky header for easy access to all sections. -->
+    <!-- Visualization & Content Choices:
+    - Intro: HTML/CSS diagram to visually hook the user. Goal: Inform/Engage.
+    - Procedure: Interactive HTML tabs. Goal: Organize/Explain. Method: JS toggles content visibility. Justification: Breaks down a complex process into manageable, user-controlled steps.
+    - Formula: Interactive calculator. Goal: Inform/Engage. Method: JS function on input fields. Justification: Makes an abstract formula practical and understandable.
+    - Materials: Interactive Chart.js horizontal bar chart with a logarithmic scale and category filter. Goal: Compare/Explore. Justification: Effectively compares materials with vast differences in hardness values. The filter allows users to focus on specific material groups, enhancing data exploration.
+    - Applications: Interactive HTML tabs. Goal: Organize/Explain. Method: JS toggles content. Justification: Presents distinct use cases cleanly without cluttering the page.
+    - Library/Method: Vanilla JS for all interactions and Chart.js for visualization.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFDFB;
+            color: #333333;
+        }
+        .nav-link {
+            transition: color 0.3s, border-bottom-color 0.3s;
+            border-bottom: 2px solid transparent;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #2D5A6C;
+            border-bottom-color: #2D5A6C;
+        }
+        .btn-primary {
+            background-color: #2D5A6C;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .btn-primary:hover {
+            background-color: #244857;
+        }
+        .tab.active {
+            background-color: #2D5A6C;
+            color: white;
+            border-color: #2D5A6C;
+        }
+        .tab {
+            border-color: #A58D7B;
+            color: #A58D7B;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 500px;
+            }
+        }
+        .h-line {
+            width: 50px;
+            height: 3px;
+            background-color: #A58D7B;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <h1 class="text-xl md:text-2xl font-bold text-[#2D5A6C]">Ensayo Vickers</h1>
+            <div class="hidden md:flex space-x-8">
+                <a href="#intro" class="nav-link font-semibold pb-1">Introducción</a>
+                <a href="#proceso" class="nav-link font-semibold pb-1">Proceso</a>
+                <a href="#calculadora" class="nav-link font-semibold pb-1">Cálculo</a>
+                <a href="#comparativa" class="nav-link font-semibold pb-1">Comparativa</a>
+                <a href="#aplicaciones" class="nav-link font-semibold pb-1">Aplicaciones</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2D5A6C]">
+                <div class="w-6 h-0.5 bg-[#333333] mb-1.5"></div>
+                <div class="w-6 h-0.5 bg-[#333333]"></div>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4">
+            <a href="#intro" class="block py-2 text-center nav-link">Introducción</a>
+            <a href="#proceso" class="block py-2 text-center nav-link">Proceso</a>
+            <a href="#calculadora" class="block py-2 text-center nav-link">Cálculo</a>
+            <a href="#comparativa" class="block py-2 text-center nav-link">Comparativa</a>
+            <a href="#aplicaciones" class="block py-2 text-center nav-link">Aplicaciones</a>
+        </div>
+    </header>
+
+    <main>
+        <section id="intro" class="py-16 md:py-24">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl md:text-5xl font-bold text-[#2D5A6C] mb-4">El Ensayo de Dureza Universal</h2>
+                <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-600 mb-12">
+                    El ensayo Vickers es un método de alta precisión que mide la resistencia de un material a ser deformado. Su versatilidad para analizar desde metales blandos hasta cerámicas duras lo convierte en una herramienta fundamental en la ciencia de materiales y el control de calidad industrial.
+                </p>
+                <div class="h-line mb-12"></div>
+                <div class="max-w-2xl mx-auto card p-8">
+                     <p class="text-xl font-semibold mb-4 text-[#2D5A6C]">El Principio: Una Huella de Precisión</p>
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                        <div class="text-center">
+                             <div class="text-6xl mb-2">💎</div>
+                             <p class="font-bold">Penetrador de Diamante</p>
+                             <p class="text-sm text-gray-500">Forma piramidal indeformable</p>
+                        </div>
+                        <div class="text-5xl font-thin text-[#A58D7B]">→</div>
+                         <div class="text-center">
+                             <div class="text-6xl mb-2">⚙️</div>
+                             <p class="font-bold">Muestra del Material</p>
+                              <p class="text-sm text-gray-500">Superficie plana y pulida</p>
+                        </div>
+                         <div class="text-5xl font-thin text-[#A58D7B]">→</div>
+                        <div class="text-center">
+                             <div class="text-6xl mb-2">📐</div>
+                             <p class="font-bold">Huella Medible</p>
+                              <p class="text-sm text-gray-500">Un material más duro deja una huella más pequeña</p>
+                        </div>
+                    </div>
+                     <p class="mt-6 text-gray-600">
+                        La esencia del ensayo es simple: se aplica una fuerza controlada (`F`) con el penetrador de diamante sobre la muestra. Luego, se mide el tamaño de la huella resultante. Esta relación entre fuerza y área de la huella define la dureza del material.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="proceso" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">El Proceso, Paso a Paso</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                        Para garantizar resultados fiables y comparables, el ensayo Vickers sigue un procedimiento estandarizado. Cada paso es crucial para la precisión del resultado final. Haz clic en cada paso para ver los detalles.
+                    </p>
+                     <div class="h-line mt-6"></div>
+                </div>
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-1/3">
+                        <div id="proceso-tabs" class="flex md:flex-col justify-center gap-4">
+                            <button data-target="paso1" class="proceso-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left transition duration-300 active">1. Preparación</button>
+                            <button data-target="paso2" class="proceso-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left transition duration-300">2. Indentación</button>
+                            <button data-target="paso3" class="proceso-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left transition duration-300">3. Medición</button>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3">
+                        <div id="paso1" class="proceso-content card p-8">
+                             <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">Paso 1: Preparación de la Muestra</h3>
+                            <img src="https://www.metallographic.com/images/Grinding-Polishing-2.jpg" alt="Pulido metalográfico" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x300/e2e8f0/94a3b8?text=Pulido+a+Espejo';">
+                            <p class="text-gray-700">La fiabilidad del ensayo depende críticamente de la calidad de la superficie. Esta debe ser plana, lisa y libre de contaminantes. Para ensayos de microdureza, que usan cargas muy bajas, se requiere un **pulido metalográfico a espejo**. Una superficie imperfecta distorsionaría la forma de la huella y conduciría a mediciones erróneas.</p>
+                        </div>
+                        <div id="paso2" class="proceso-content hidden card p-8">
+                             <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">Paso 2: Aplicación de la Carga (Indentación)</h3>
+                            <img src="https://www.tec-science.com/wp-content/uploads/2021/03/en-hardness-test-vickers-process.jpg" alt="Proceso de indentación Vickers" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x300/e2e8f0/94a3b8?text=Indentación';">
+                            <p class="text-gray-700">Se presiona el penetrador de diamante, con su ángulo característico de 136° entre caras opuestas, sobre la superficie. La fuerza de ensayo (`F`) se aplica de forma suave y controlada, manteniéndose constante durante un tiempo estándar de **10 a 15 segundos**. Este ciclo asegura que el material se deforme plásticamente de manera estable.</p>
+                        </div>
+                        <div id="paso3" class="proceso-content hidden card p-8">
+                             <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">Paso 3: Medición Óptica de la Huella</h3>
+                            <img src="https://www.researchgate.net/profile/Enrique-Rocha-Rangel/publication/28211170/figure/fig4/AS:667825068699651@1536233310069/Micrografia-tipica-de-las-indentaciones-Vickers-50-MPa.png" alt="Huella de dureza Vickers" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x300/e2e8f0/94a3b8?text=Huella+Vickers';">
+                            <p class="text-gray-700">Tras retirar la carga, se utiliza un microscopio integrado en el durómetro para medir con precisión las longitudes de las dos diagonales (`d₁` y `d₂`) de la huella cuadrada. Se calcula la **media aritmética de ambas diagonales** (`d`) para compensar posibles distorsiones y obtener una base de cálculo más exacta.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="calculadora" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">La Fórmula en Acción</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">El valor de dureza Vickers (HV) no se mide directamente, sino que se calcula. Utiliza esta calculadora interactiva para entender cómo la fuerza aplicada y el tamaño de la huella determinan la dureza.</p>
+                     <div class="h-line mt-6"></div>
+                </div>
+
+                <div class="max-w-4xl mx-auto card p-8">
+                    <div class="text-center mb-6">
+                        <p class="text-2xl font-mono bg-gray-100 p-4 rounded-lg inline-block">HV ≈ 1.854 × ( F / d² )</p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+                        <div class="md:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="fuerza" class="block font-semibold mb-2">Fuerza Aplicada (F) <span class="text-sm text-gray-500">(kgf)</span></label>
+                                <input type="number" id="fuerza" value="30" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A58D7B] focus:border-[#A58D7B]">
+                            </div>
+                            <div>
+                                <label for="diagonal" class="block font-semibold mb-2">Diagonal Media (d) <span class="text-sm text-gray-500">(mm)</span></label>
+                                <input type="number" id="diagonal" value="0.35" step="0.01" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A58D7B] focus:border-[#A58D7B]">
+                            </div>
+                             <div class="sm:col-span-2">
+                                <button id="calculateBtn" class="btn-primary w-full font-bold py-3 px-6 rounded-lg">Calcular Dureza</button>
+                            </div>
+                        </div>
+                        <div class="text-center bg-blue-50 p-6 rounded-lg border-2 border-dashed border-[#2D5A6C]">
+                            <p class="text-lg font-semibold text-[#2D5A6C]">Dureza Vickers</p>
+                            <p id="resultadoHV" class="text-4xl md:text-5xl font-bold text-[#2D5A6C] my-2">--</p>
+                            <p id="resultadoLabel" class="text-gray-600 font-semibold">HV</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparativa" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Comparando Materiales</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">La dureza varía enormemente entre distintos materiales. Explora este gráfico interactivo para comparar valores típicos de dureza Vickers. Usa el filtro para centrarte en categorías específicas.</p>
+                     <div class="h-line mt-6"></div>
+                </div>
+
+                <div class="max-w-4xl mx-auto card p-6 md:p-8">
+                    <div class="flex justify-end mb-4">
+                         <select id="materialFilter" class="p-2 border border-gray-300 rounded-lg font-semibold focus:ring-2 focus:ring-[#A58D7B] focus:border-[#A58D7B]">
+                            <option value="Todos">Todos los Materiales</option>
+                            <option value="Aceros y Aleaciones">Aceros y Aleaciones</option>
+                            <option value="Metales no Ferrosos">Metales no Ferrosos</option>
+                            <option value="Cerámicas">Cerámicas</option>
+                        </select>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="hardnessChart"></canvas>
+                    </div>
+                     <p class="text-center text-sm text-gray-500 mt-4">Nota: El eje X (Dureza HV) utiliza una escala logarítmica para visualizar mejor el amplio rango de valores.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="aplicaciones" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Aplicaciones Industriales Clave</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">La precisión del ensayo Vickers lo hace indispensable en múltiples campos donde las propiedades mecánicas son críticas para la seguridad y el rendimiento.</p>
+                     <div class="h-line mt-6"></div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card p-8 flex flex-col">
+                        <div class="text-3xl mb-4">🌡️</div>
+                        <h3 class="text-xl font-bold text-[#2D5A6C] mb-3">Tratamientos Térmicos</h3>
+                        <p class="text-gray-600 flex-grow">Es el método estándar para verificar la eficacia de tratamientos como la cementación o el temple. Se crean "perfiles de dureza" midiendo desde la superficie hacia el núcleo para determinar con exactitud la profundidad de la capa endurecida, un parámetro vital para engranajes y ejes.</p>
+                        <img src="https://www.zwickroell.com/wp-content/uploads/2021/05/Verlauf-der-Haerte-in-Abhaengigkeit-vom-Abstand-von-der-Oberflaeche-bei-der-Einsatzhaertetiefe-CHD-650x400.png" alt="Perfil de dureza" class="w-full h-40 object-cover rounded-lg mt-4" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/94a3b8?text=Perfil+de+Dureza';">
+                    </div>
+
+                    <div class="card p-8 flex flex-col">
+                        <div class="text-3xl mb-4">🔗</div>
+                        <h3 class="text-xl font-bold text-[#2D5A6C] mb-3">Análisis de Soldaduras</h3>
+                        <p class="text-gray-600 flex-grow">El calor de la soldadura altera las propiedades del metal. Con Vickers, se crean "mapas de dureza" sobre la unión para visualizar la distribución de propiedades y detectar zonas frágiles o reblandecidas que podrían causar fallos. Es un requisito en la calificación de soldadores y procedimientos.</p>
+                        <img src="https://www.researchgate.net/profile/Nicollas-Arruda/publication/335104976/figure/fig7/AS:790104193568771@1565388175512/Mapas-de-microdureza-em-escala-Vickers-Hardness-Vickers-HV-no-aco-SAE-1045-com.png" alt="Mapa de dureza en soldadura" class="w-full h-40 object-cover rounded-lg mt-4" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/94a3b8?text=Mapa+de+Dureza';">
+                    </div>
+
+                    <div class="card p-8 flex flex-col">
+                        <div class="text-3xl mb-4">🔬</div>
+                        <h3 class="text-xl font-bold text-[#2D5A6C] mb-3">Microdureza y Capas Finas</h3>
+                        <p class="text-gray-600 flex-grow">La capacidad de usar cargas muy ligeras (microdureza) permite medir con precisión recubrimientos delgados (PVD, galvanizados), componentes electrónicos, piezas de relojería, o incluso fases individuales dentro de la microestructura de un material, siendo clave para la investigación y el desarrollo.</p>
+                        <img src="https://www.innovatest-europe.com/wp-content/uploads/2019/08/weld-inspection-hardness-testing-1024x768.jpg" alt="Microdureza" class="w-full h-40 object-cover rounded-lg mt-4" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/94a3b8?text=Microdureza';">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-16">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p class="font-semibold text-lg">Guía Interactiva del Ensayo de Dureza Vickers</p>
+            <p class="text-gray-400 mt-2">Aplicación desarrollada para facilitar la comprensión de uno de los métodos más importantes en la ciencia de materiales.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            document.querySelectorAll('#mobile-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            window.onscroll = () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 100) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            };
+
+            const procesoTabs = document.querySelectorAll('.proceso-tab');
+            const procesoContents = document.querySelectorAll('.proceso-content');
+            procesoTabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    procesoTabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+                    const target = tab.getAttribute('data-target');
+                    procesoContents.forEach(content => {
+                        content.classList.add('hidden');
+                        if (content.id === target) {
+                            content.classList.remove('hidden');
+                        }
+                    });
+                });
+            });
+
+            const calculateBtn = document.getElementById('calculateBtn');
+            const fuerzaInput = document.getElementById('fuerza');
+            const diagonalInput = document.getElementById('diagonal');
+            const resultadoHV = document.getElementById('resultadoHV');
+            const resultadoLabel = document.getElementById('resultadoLabel');
+
+            const calculateHV = () => {
+                const F = parseFloat(fuerzaInput.value);
+                const d = parseFloat(diagonalInput.value);
+
+                if (isNaN(F) || isNaN(d) || F <= 0 || d <= 0) {
+                    resultadoHV.textContent = 'Error';
+                    resultadoLabel.textContent = 'Datos inválidos';
+                    return;
+                }
+
+                const hv = 1.854 * (F / (d * d));
+                resultadoHV.textContent = hv.toFixed(1);
+                resultadoLabel.textContent = `${F} HV`;
+            };
+
+            calculateBtn.addEventListener('click', calculateHV);
+            calculateHV();
+
+            const materialsData = {
+              'Todos': [
+                { label: 'Plomo', value: 5, category: 'Metales no Ferrosos' },
+                { label: 'Hierro', value: 55, category: 'Aceros y Aleaciones' },
+                { label: 'Acero al Carbono', value: 87, category: 'Aceros y Aleaciones' },
+                { label: 'Cobre', value: 80, category: 'Metales no Ferrosos' },
+                { label: 'Aluminio', value: 85, category: 'Metales no Ferrosos' },
+                { label: 'Acero Inoxidable', value: 180, category: 'Aceros y Aleaciones' },
+                { label: 'Titanio', value: 350, category: 'Aceros y Aleaciones' },
+                { label: 'Acero Tratado', value: 750, category: 'Aceros y Aleaciones' },
+                { label: 'Cerámica (Corindón)', value: 2000, category: 'Cerámicas' },
+              ],
+              'Aceros y Aleaciones': [
+                { label: 'Hierro', value: 55 },
+                { label: 'Acero al Carbono', value: 87 },
+                { label: 'Acero Inoxidable', value: 180 },
+                { label: 'Titanio', value: 350 },
+                { label: 'Acero Tratado', value: 750 },
+              ],
+              'Metales no Ferrosos': [
+                  { label: 'Plomo', value: 5 },
+                  { label: 'Cobre', value: 80 },
+                  { label: 'Aluminio', value: 85 },
+              ],
+              'Cerámicas': [
+                { label: 'Cerámica (Corindón)', value: 2000 },
+              ]
+            };
+
+            const ctx = document.getElementById('hardnessChart').getContext('2d');
+            let hardnessChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Dureza Vickers (HV)',
+                        data: [],
+                        backgroundColor: '#A58D7B',
+                        borderColor: '#846e5e',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'logarithmic',
+                            title: {
+                                display: true,
+                                text: 'Dureza HV (Escala Logarítmica)',
+                                font: { size: 14 }
+                            }
+                        },
+                        y: {
+                           ticks: {
+                                autoSkip: false,
+                                callback: function(value, index, values) {
+                                    const label = this.getLabelForValue(value);
+                                    if (label.length > 16) {
+                                        return label.substring(0, 16) + '...';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.x !== null) {
+                                        label += context.parsed.x.toFixed(1) + ' HV';
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            const updateChart = (filter = 'Todos') => {
+                const data = materialsData[filter].sort((a, b) => a.value - b.value);
+                hardnessChart.data.labels = data.map(m => m.label);
+                hardnessChart.data.datasets[0].data = data.map(m => m.value);
+                hardnessChart.update();
+            };
+            
+            document.getElementById('materialFilter').addEventListener('change', (e) => {
+                updateChart(e.target.value);
+            });
+
+            updateChart();
+        });
+    </script>
+</body>
+</html>
