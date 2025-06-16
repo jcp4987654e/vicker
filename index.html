@@ -8,8 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Serene Tech (Background: #FDFDFB, Text: #333333, Primary: #2D5A6C, Accent: #A58D7B) -->
     <!-- Application Structure Plan: A single-page, multi-section layout designed for guided discovery. It starts with a broad introduction, then drills down into the 'how' (interactive procedure), 'what' (formula calculator), and 'what for' (materials comparison and applications). This task-oriented flow (Understand -> Calculate -> Compare -> Apply) is more intuitive for learning than a linear report structure, encouraging interaction at each stage. Navigation is handled by a sticky header for easy access to all sections. -->
     <!-- Visualization & Content Choices:
@@ -63,76 +62,71 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
         }
-        .chart-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            height: 400px;
-        }
-        @media (min-width: 768px) {
-            .chart-container {
-                height: 500px;
-            }
-        }
         .h-line {
             width: 50px;
             height: 3px;
             background-color: #A58D7B;
             margin: 0 auto;
         }
-        .advantage-card, .limitation-card {
-            border-left: 4px solid;
-        }
-        .advantage-card { border-color: #28a745; }
-        .limitation-card { border-color: #dc3545; }
-        .video-placeholder {
-            background-color: #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            aspect-ratio: 16 / 9;
-            width: 100%;
-        }
         #main-header {
             transition: opacity 0.5s ease-in-out;
+        }
+        #caratula .initial-content, #caratula .hover-content {
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        #caratula .hover-content {
+            opacity: 0;
+            transform: scale(0.9);
+            pointer-events: none;
+            position: absolute;
+        }
+        #caratula:hover .initial-content {
+            opacity: 0;
+            transform: scale(0.9);
+            pointer-events: none;
+        }
+        #caratula:hover .hover-content {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+        .integrante-nombre {
+            transition: color 0.3s;
+        }
+        .integrante-nombre:hover {
+            color: #a5c4d4;
         }
     </style>
 </head>
 <body class="overflow-x-hidden">
     
-    <section id="caratula" class="relative text-white" style="min-height: 100vh;">
+    <section id="caratula" class="relative text-white" style="min-height: 100vh; overflow: hidden;">
         <div class="absolute inset-0 bg-gray-900">
             <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726a?q=80&w=2070&auto=format&fit=crop" alt="Fondo tecnológico abstracto" class="w-full h-full object-cover opacity-20">
         </div>
         <div class="relative z-10 flex flex-col items-center justify-center min-h-screen text-center p-8">
-            <div class="flex-grow flex flex-col items-center justify-center">
-                <h1 class="text-6xl md:text-8xl font-bold tracking-tight" style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);">EXPOSICIÓN: ENSAYO VICKERS</h1>
-                <p class="text-2xl md:text-3xl text-gray-300 mt-4">Laboratorio de Ensayos Industriales</p>
-                
-                <a href="#intro" class="mt-16 inline-block bg-white text-gray-900 font-bold py-4 px-10 rounded-full text-xl hover:bg-gray-200 transition-colors duration-300 shadow-lg">
+            
+            <div class="initial-content w-full flex flex-col items-center justify-center">
+                <p class="text-2xl md:text-3xl text-gray-300">INSTITUTO 13 DE JULIO - C.A.B.A</p>
+                <h1 class="text-6xl md:text-8xl font-black tracking-tighter text-white my-4" style="font-family: 'Montserrat', sans-serif; text-shadow: 3px 3px 10px rgba(0,0,0,0.5);">EXPOSICIÓN: ENSAYO VICKERS</h1>
+                <p class="text-xl md:text-2xl text-gray-300">Laboratorio de Ensayos Industriales</p>
+                <p class="text-lg mt-8"><strong>Profesor:</strong> Bertini</p>
+                <a href="#intro" class="mt-8 inline-block bg-white text-gray-900 font-bold py-4 px-10 rounded-full text-xl hover:bg-gray-200 transition-colors duration-300 shadow-lg">
                     Comenzar Exposición
                 </a>
             </div>
-
-            <div class="w-full max-w-4xl mx-auto mt-8 pt-8 border-t border-gray-600">
-                <p class="text-xl font-semibold mb-4">INSTITUTO 13 DE JULIO - C.A.B.A</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-lg">
-                    <div class="text-center md:text-right">
-                        <p><strong>Profesor:</strong> Bertini</p>
-                        <p class="mt-2"><strong>Fecha:</strong> 16/06/2025</p>
-                    </div>
-                    <div class="text-center md:text-left">
-                        <p class="font-bold">Integrantes:</p>
-                        <p>Jesús Castellanos</p>
-                        <p>Nicolas Arguello</p>
-                        <p>Paloma Mariño</p>
-                        <p>Shaggy</p>
-                        <p>Rosa anos</p>
-                    </div>
+            
+            <div class="hover-content w-full flex flex-col items-center justify-center">
+                 <p class="text-4xl font-bold mb-8">Integrantes</p>
+                 <div class="text-5xl md:text-7xl font-semibold space-y-4">
+                    <p class="integrante-nombre">Jesús Castellanos</p>
+                    <p class="integrante-nombre">Nicolas Arguello</p>
+                    <p class="integrante-nombre">Paloma Mariño</p>
+                    <p class="integrante-nombre">Shaggy</p>
+                    <p class="integrante-nombre">Rosa anos</p>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -518,6 +512,19 @@
             }, { threshold: 0.1 });
 
             observer.observe(coverSection);
+
+            const coverContent = document.getElementById('caratula-content');
+            coverSection.addEventListener('mousemove', (e) => {
+                const { clientX, clientY, currentTarget } = e;
+                const { clientWidth, clientHeight } = currentTarget;
+                const x = (clientX - clientWidth / 2) / (clientWidth / 2);
+                const y = (clientY - clientHeight / 2) / (clientHeight / 2);
+                const maxRotate = 8;
+                coverContent.style.transform = `perspective(1000px) rotateY(${x * maxRotate}deg) rotateX(${-y * maxRotate}deg) scale(1.05)`;
+            });
+            coverSection.addEventListener('mouseleave', () => {
+                coverContent.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)';
+            });
 
 
             const mobileMenuButton = document.getElementById('mobile-menu-button');
