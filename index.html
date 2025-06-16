@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Serene Tech (Background: #FDFDFB, Text: #333333, Primary: #2D5A6C, Accent: #A58D7B) -->
     <!-- Application Structure Plan: A single-page, multi-section layout designed for guided discovery. It starts with a broad introduction, then drills down into the 'how' (interactive procedure), 'what' (formula calculator), and 'what for' (materials comparison and applications). This task-oriented flow (Understand -> Calculate -> Compare -> Apply) is more intuitive for learning than a linear report structure, encouraging interaction at each stage. Navigation is handled by a sticky header for easy access to all sections. -->
     <!-- Visualization & Content Choices:
@@ -86,18 +87,57 @@
         }
         .advantage-card { border-color: #28a745; }
         .limitation-card { border-color: #dc3545; }
+        .video-placeholder {
+            background-color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            aspect-ratio: 16 / 9;
+            width: 100%;
+        }
+        #main-header {
+            transition: opacity 0.5s ease-in-out;
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
+    
+    <section id="caratula" class="relative text-white" style="min-height: 100vh;">
+        <div class="absolute inset-0 bg-black">
+            <img src="https://www.researchgate.net/profile/Peter-Felfer/publication/263832367/figure/fig1/AS:297245979234304@144788023-Felfer/Micrograph-of-a-Vickers-indent-in-the-austenite-phase-of-the-duplex-stainless-steel.png" alt="Micrografía de huella Vickers" class="w-full h-full object-cover opacity-30">
+        </div>
+        <div class="relative z-10 flex flex-col items-center justify-center min-h-screen text-center p-8">
+            <div class="mb-auto pt-8">
+                <h1 class="text-5xl md:text-7xl font-bold tracking-tight">EXPOSICIÓN: ENSAYO VICKERS</h1>
+                <p class="text-xl md:text-2xl text-gray-300 mt-4">Laboratorio de Ensayos Industriales</p>
+            </div>
+            
+            <a href="#intro" class="my-12 inline-block bg-white text-gray-900 font-bold py-3 px-8 rounded-full text-lg hover:bg-gray-200 transition-colors duration-300">
+                Comenzar Exposición
+            </a>
 
-    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm">
+            <div class="mt-auto pb-8">
+                <p class="font-semibold">INSTITUTO 13 DE JULIO - C.A.B.A</p>
+                <div class="mt-4 text-gray-300">
+                    <p><strong>Profesor:</strong> Bertini</p>
+                    <p class="mt-2"><strong>Integrantes:</strong></p>
+                    <p>Jesús Castellanos • Nicolas Arguello • Paloma Mariño • Shaggy • Rosa anos</p>
+                </div>
+                 <p class="text-sm text-gray-400 mt-4">16 de Junio, 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <header id="main-header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 shadow-sm opacity-0">
         <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
             <h1 class="text-xl md:text-2xl font-bold text-[#2D5A6C]">Ensayo Vickers</h1>
-            <div class="hidden md:flex space-x-6 lg:space-x-8">
+            <div class="hidden md:flex flex-wrap items-center justify-center space-x-4 lg:space-x-6">
                 <a href="#intro" class="nav-link font-semibold pb-1">Introducción</a>
                 <a href="#proceso" class="nav-link font-semibold pb-1">Proceso</a>
                 <a href="#calculadora" class="nav-link font-semibold pb-1">Cálculo</a>
                 <a href="#aplicaciones" class="nav-link font-semibold pb-1">Aplicaciones</a>
+                <a href="#videos" class="nav-link font-semibold pb-1">Videos</a>
+                <a href="#conversor" class="nav-link font-semibold pb-1">Conversor</a>
                 <a href="#ventajas" class="nav-link font-semibold pb-1">Ventajas</a>
                 <a href="#referencias" class="nav-link font-semibold pb-1">Referencias</a>
             </div>
@@ -111,6 +151,8 @@
             <a href="#proceso" class="block py-2 text-center nav-link">Proceso</a>
             <a href="#calculadora" class="block py-2 text-center nav-link">Cálculo</a>
             <a href="#aplicaciones" class="block py-2 text-center nav-link">Aplicaciones</a>
+            <a href="#videos" class="block py-2 text-center nav-link">Videos</a>
+            <a href="#conversor" class="block py-2 text-center nav-link">Conversor</a>
             <a href="#ventajas" class="block py-2 text-center nav-link">Ventajas</a>
             <a href="#referencias" class="block py-2 text-center nav-link">Referencias</a>
         </div>
@@ -124,15 +166,9 @@
                     <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-600 mb-12">
                         Desarrollado en la década de 1920 por Robert L. Smith y George E. Sandland en la empresa británica Vickers, este ensayo revolucionó la ciencia de materiales. Ofreció un método preciso y versátil para medir la resistencia de un material a ser deformado.
                     </p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto mb-12">
-                        <div class="text-center">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/e/e9/Vickers_Armstrong_logo_1927.png" alt="Logo de Vickers-Armstrongs" class="mx-auto h-24 object-contain mb-2" onerror="this.onerror=null;this.src='https://placehold.co/300x150/e2e8f0/94a3b8?text=Vickers+Ltd.';">
-                            <p class="text-sm font-semibold text-gray-600">Logo de Vickers-Armstrongs (1927), la empresa donde nació el ensayo.</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="https://www.npl.co.uk/discover/history-npl/famous-faces/robert-lenox-smith-1886-1965-george-edward-sand" alt="Robert L. Smith y George E. Sandland" class="mx-auto h-24 object-contain mb-2 rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/300x150/e2e8f0/94a3b8?text=Creadores';">
-                            <p class="text-sm font-semibold text-gray-600">Robert L. Smith y George E. Sandland, los inventores del método.</p>
-                        </div>
+                    <div class="max-w-2xl mx-auto mb-12">
+                        <img src="https://c8.alamy.com/comp/2KFBP2D/vickers-armstrong-works-sheffield-2KFBP2D.jpg" alt="Fábrica de Vickers-Armstrongs en Sheffield" class="mx-auto h-48 object-contain mb-2 rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/400x250/e2e8f0/94a3b8?text=Fábrica+Vickers';">
+                        <p class="text-sm font-semibold text-gray-600 text-center">Fábrica de Vickers en Sheffield, cuna de importantes avances en la metalurgia del siglo XX.</p>
                     </div>
                 </div>
                 
@@ -154,9 +190,7 @@
                         </div>
                         <div class="text-4xl font-thin text-[#A58D7B] self-center hidden md:block">➔</div>
                         <div class="text-center w-full md:w-1/3">
-                            <div class="mx-auto h-32 flex items-center justify-center">
-                                <span class="text-6xl">🔬</span>
-                            </div>
+                            <img src="https://www.qatm.com/images/800x800-qpix-control2-messrahmen.jpg" alt="Medición de la huella en microscopio con retícula" class="mx-auto h-32 object-contain mb-4 rounded" onerror="this.onerror=null;this.src='https://placehold.co/200x200/e2e8f0/94a3b8?text=Medición';">
                             <h3 class="font-bold text-lg">3. Se mide la huella</h3>
                             <p class="text-sm text-gray-600">Se miden las diagonales (d) de la huella. Un material más duro deja una huella más pequeña.</p>
                         </div>
@@ -202,8 +236,24 @@
                 </div>
             </div>
         </section>
+        
+        <section id="grafico-ilustrativo" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Gráfico Ilustrativo: Penetrador y Probeta</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                        Esta ilustración muestra la relación geométrica entre el penetrador de diamante y la huella que deja en la probeta, que es la base de todo el cálculo.
+                    </p>
+                    <div class="h-line mt-6"></div>
+                </div>
+                <div class="max-w-3xl mx-auto card p-8">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Vickers_hardness_test_schema.svg/500px-Vickers_hardness_test_schema.svg.png" alt="Esquema del ensayo Vickers con probeta y penetrador" class="w-full h-auto object-contain rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/800x600/e2e8f0/94a3b8?text=Esquema+del+Ensayo';">
+                    <p class="text-center text-gray-600 mt-4">El penetrador piramidal crea una huella cuadrada en la superficie de la probeta. La medición de sus diagonales (`d1`, `d2`) y la fuerza (`F`) son los datos necesarios para calcular la dureza.</p>
+                </div>
+            </div>
+        </section>
 
-        <section id="calculadora" class="py-16 md:py-24">
+        <section id="calculadora" class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">La Fórmula en Acción</h2>
@@ -239,7 +289,7 @@
             </div>
         </section>
 
-        <section id="aplicaciones" class="py-16 md:py-24 bg-white">
+        <section id="aplicaciones" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                      <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Aplicaciones Industriales Clave</h2>
@@ -275,7 +325,7 @@
             </div>
         </section>
 
-        <section id="comparativa" class="py-16 md:py-24">
+        <section id="comparativa" class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Comparando Materiales</h2>
@@ -300,7 +350,75 @@
             </div>
         </section>
 
-        <section id="ventajas" class="py-16 md:py-24 bg-white">
+        <section id="videos" class="py-16 md:py-24">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Videos Explicativos</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                        Para una mejor comprensión del procedimiento, puedes cargar videos de YouTube directamente aquí. Haz clic derecho en un video de YouTube, selecciona "Copiar URL del video" y pégala abajo.
+                    </p>
+                    <div class="h-line mt-6"></div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="card p-4 flex flex-col space-y-4">
+                        <div class="video-container rounded-lg overflow-hidden">
+                           <iframe id="videoFrame1" class="w-full aspect-video" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <input type="text" id="videoUrl1" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Pega la URL del video aquí">
+                        <button id="loadVideoBtn1" class="btn-primary w-full font-bold py-2 px-4 rounded-lg">Cargar Video 1</button>
+                    </div>
+
+                    <div class="card p-4 flex flex-col space-y-4">
+                        <div class="video-container rounded-lg overflow-hidden">
+                           <iframe id="videoFrame2" class="w-full aspect-video" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <input type="text" id="videoUrl2" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Pega la URL del video aquí">
+                        <button id="loadVideoBtn2" class="btn-primary w-full font-bold py-2 px-4 rounded-lg">Cargar Video 2</button>
+                    </div>
+
+                    <div class="card p-4 flex flex-col space-y-4">
+                        <div class="video-container rounded-lg overflow-hidden">
+                           <iframe id="videoFrame3" class="w-full aspect-video" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <input type="text" id="videoUrl3" class="w-full p-2 border border-gray-300 rounded-lg" placeholder="Pega la URL del video aquí">
+                        <button id="loadVideoBtn3" class="btn-primary w-full font-bold py-2 px-4 rounded-lg">Cargar Video 3</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="conversor" class="py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Conversor Interactivo de Dureza</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">
+                        En la industria, a menudo es necesario comparar valores entre diferentes escalas. Usa esta herramienta para convertir valores de dureza Vickers (HV) a otras escalas comunes.
+                    </p>
+                    <div class="h-line mt-6"></div>
+                </div>
+                <div class="max-w-2xl mx-auto card p-8">
+                    <div>
+                        <label for="hvInput" class="block text-xl font-semibold mb-2 text-center">Introduce Dureza Vickers (HV)</label>
+                        <input type="number" id="hvInput" value="450" class="w-full text-center text-2xl p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#A58D7B] focus:border-[#A58D7B]">
+                    </div>
+                    <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
+                        <div class="bg-gray-100 p-6 rounded-lg">
+                            <h4 class="text-lg font-bold text-[#2D5A6C]">Rockwell C (HRC)</h4>
+                            <p id="hrcOutput" class="text-3xl font-bold mt-2">--</p>
+                        </div>
+                        <div class="bg-gray-100 p-6 rounded-lg">
+                            <h4 class="text-lg font-bold text-[#2D5A6C]">Brinell (HBW)</h4>
+                            <p id="hbOutput" class="text-3xl font-bold mt-2">--</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-6 text-center">Nota: Las conversiones son aproximadas según ASTM E140 para aceros y pueden variar para otros materiales.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ventajas" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                  <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Ventajas y Limitaciones</h2>
@@ -346,7 +464,7 @@
             </div>
         </section>
         
-        <section id="referencias" class="py-16 md:py-24">
+        <section id="referencias" class="py-16 md:py-24 bg-white">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                      <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Referencias Bibliográficas</h2>
@@ -357,9 +475,9 @@
                     <ul class="list-disc list-inside space-y-2 text-gray-700">
                         <li>**Norma ISO 6507**: "Materiales metálicos — Ensayo de dureza Vickers". Es el estándar internacional que define el procedimiento.</li>
                         <li>**Norma ASTM E384**: "Standard Test Method for Microindentation Hardness of Materials". Estándar clave para ensayos de microdureza.</li>
+                        <li>**Norma ASTM E140**: "Standard Hardness Conversion Tables for Metals". Define las tablas de conversión entre diferentes escalas de dureza.</li>
                         <li>**Callister, W. D., & Rethwisch, D. G.** (2018). *Materials Science and Engineering: An Introduction*. Wiley. (Libro de texto fundamental en ciencia de materiales).</li>
                         <li>**Struers ApS** - *Materialography Knowledge Base*. ([struers.com](https://www.struers.com/es-ES/Knowledge/Hardness-testing/Vickers)). Fabricante líder de equipos y fuente técnica de referencia.</li>
-                        <li>**ZwickRoell Group** - *Hardness Testing Wiki*. ([zwickroell.com](https://www.zwickroell.com/es/sectores/ensayo-de-materiales/ensayo-de-dureza/)). Otro fabricante importante con amplios recursos educativos.</li>
                     </ul>
                 </div>
             </div>
@@ -377,6 +495,22 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+
+            const mainHeader = document.getElementById('main-header');
+            const coverSection = document.getElementById('caratula');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        mainHeader.style.opacity = '1';
+                    } else {
+                        mainHeader.style.opacity = '0';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            observer.observe(coverSection);
+
 
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -454,6 +588,38 @@
 
             calculateBtn.addEventListener('click', calculateHV);
             calculateHV();
+
+            const hvInput = document.getElementById('hvInput');
+            const hrcOutput = document.getElementById('hrcOutput');
+            const hbOutput = document.getElementById('hbOutput');
+
+            const convertHardness = () => {
+                const hv = parseFloat(hvInput.value);
+
+                if (isNaN(hv) || hv < 0) {
+                    hrcOutput.textContent = '--';
+                    hbOutput.textContent = '--';
+                    return;
+                }
+
+                // Approximate conversion HV to HRC (for steels)
+                // This is a simplified polynomial approximation from ASTM E140 tables
+                let hrc = "N/A";
+                if (hv >= 240 && hv <= 940) {
+                    hrc = (109.4 - 231.5 / (Math.log(hv) - 2.8)).toFixed(1);
+                }
+                
+                // Approximate conversion HV to HBW (for steels)
+                // HBW is very close to HV for higher values.
+                let hb = (hv * 0.95).toFixed(0);
+
+                hrcOutput.textContent = hrc;
+                hbOutput.textContent = hb;
+
+            };
+
+            hvInput.addEventListener('input', convertHardness);
+            convertHardness();
 
             const materialsData = {
               'Todos': [
@@ -561,7 +727,289 @@
             });
 
             updateChart();
+
+            function setupVideoLoader(buttonId, inputId, frameId) {
+                const loadBtn = document.getElementById(buttonId);
+                const urlInput = document.getElementById(inputId);
+                const videoFrame = document.getElementById(frameId);
+
+                loadBtn.addEventListener('click', () => {
+                    const url = urlInput.value;
+                    let videoId = null;
+                    
+                    if (url.includes('youtube.com/watch?v=')) {
+                        videoId = new URL(url).searchParams.get('v');
+                    } else if (url.includes('youtu.be/')) {
+                        videoId = new URL(url).pathname.slice(1);
+                    }
+                    
+                    if (videoId) {
+                        videoFrame.src = `https://www.youtube.com/embed/${videoId}`;
+                    } else {
+                        videoFrame.src = '';
+                    }
+                });
+            }
+
+            setupVideoLoader('loadVideoBtn1', 'videoUrl1', 'videoFrame1');
+            setupVideoLoader('loadVideoBtn2', 'videoUrl2', 'videoFrame2');
+            setupVideoLoader('loadVideoBtn3', 'videoUrl3', 'videoFrame3');
+
         });
     </script>
 </body>
 </html>
+```
+
+<br>
+Most up-to-date Immersive Artifact for "b1c2d3e4-f5a6-7890-1234-567890abcdef" is:
+
+# **Ensayo de Dureza Vickers**
+
+---
+
+**Carátula**
+
+* **Institución:** [Nombre de la Institución]
+* **Asignatura:** [Nombre de la Asignatura]
+* **Profesor:** [Nombre del Profesor]
+* **Grupo:** [Nombre o Número del Grupo]
+* **Integrantes:**
+    * [Nombre del Integrante 1]
+    * [Nombre del Integrante 2]
+    * [Nombre del Integrante 3]
+    * [Nombre del Integrante 4]
+    * [Nombre del Integrante 5]
+* **Fecha:** [Fecha de Entrega]
+
+---
+
+## **Índice**
+
+1.  **Breve introducción e historia del ensayo**
+2.  **Explicación del ensayo**
+    * ¿Para qué sirve y cuál es su principio?
+    * Procedimiento detallado del ensayo
+    * Materiales aplicables
+3.  **Fórmula de la dureza**
+4.  **Gráfico: Probeta y Penetrador**
+5.  **Aplicaciones y usos industriales**
+    * Control de Calidad en Tratamientos Térmicos
+    * Análisis de Uniones Soldadas
+    * Microdureza en Capas Finas y Piezas Pequeñas
+6.  **Ejemplos de materiales ensayados**
+7.  **Detalles de la referencia bibliográfica**
+
+---
+
+### **1. Breve introducción e historia del ensayo**
+
+El ensayo de dureza Vickers, conocido como el "ensayo universal", es un método de alta precisión para medir la resistencia de un material a la deformación plástica localizada, es decir, a ser penetrado. [1, 2] Fue desarrollado entre 1921 y 1925 por los ingenieros Robert L. Smith y George E. Sandland en la compañía británica Vickers Ltd. 
+
+Nació como una mejora directa al ensayo Brinell (1900), que utilizaba una bola de acero y presentaba limitaciones al ensayar materiales muy duros o piezas delgadas.  La innovación fundamental del método Vickers fue el uso de un **penetrador de diamante con forma de pirámide de base cuadrada**, que, al ser de diamante, no se deforma, y la posibilidad de usar cargas mucho más ligeras.  Esta combinación permitió, por primera vez, realizar ensayos de microdureza con una versatilidad y exactitud sin precedentes, respondiendo a las necesidades de la creciente industria metalúrgica del siglo XX. 
+
+---
+
+### **2. Explicación del ensayo**
+
+#### **¿Para qué sirve y cuál es su principio?**
+El ensayo Vickers sirve para cuantificar la dureza, una propiedad mecánica fundamental que se relaciona con la **resistencia al desgaste, la solidez y la ductilidad** de un material.  Es una herramienta esencial en el control de calidad, la investigación de materiales y la ingeniería, ya que permite verificar si un material o un tratamiento térmico cumple con las especificaciones de diseño para una aplicación determinada. [3, 4]
+
+El principio se basa en presionar un penetrador de geometría fija (la pirámide de diamante) sobre la superficie de la muestra con una fuerza conocida y controlada. La dureza se determina midiendo ópticamente el tamaño de la huella resultante: **un material más duro opondrá mayor resistencia, resultando en una huella más pequeña** para una misma fuerza aplicada. 
+
+#### **Procedimiento detallado del ensayo**
+El ensayo sigue un procedimiento estandarizado por normas internacionales como ISO 6507 y ASTM E384 para garantizar la reproducibilidad de los resultados.  Los pasos son:
+
+1.  **Preparación de la muestra:** La fiabilidad del ensayo depende críticamente de la calidad de la superficie. Esta debe ser plana, lisa y estar libre de contaminantes. Para ensayos de microdureza (cargas bajas), se requiere un **pulido metalográfico a espejo**. 
+2.  **Aplicación de la carga (Indentación):** Se presiona el penetrador de diamante, con un ángulo de 136° entre sus caras opuestas, sobre la superficie de la muestra.  La fuerza de ensayo (`F`) se aplica de forma suave y controlada, manteniéndose constante durante un tiempo estándar de 10 a 15 segundos. 
+3.  **Medición de la huella:** Tras retirar la carga, se utiliza un microscopio integrado en el durómetro para medir con precisión las longitudes de las dos diagonales (`d₁` y `d₂`) de la huella cuadrada que ha quedado en la superficie.  Se calcula la media de ambas diagonales para compensar posibles distorsiones. [5]
+
+#### **Materiales aplicables**
+Gracias a su amplio rango de cargas (desde unos pocos gramos hasta más de 100 kgf) y a la alta dureza del penetrador de diamante, el método Vickers es extremadamente versátil y se puede utilizar en prácticamente **todos los materiales sólidos**, lo que le vale el apodo de "ensayo universal".  Esto incluye:
+* Metales blandos (plomo, estaño) y duros (aceros templados, aleaciones de titanio). 
+* Cerámicas, vidrios y materiales compuestos. 
+* Láminas y chapas muy delgadas (hasta 0.15 mm de espesor). 
+* Recubrimientos superficiales (PVD, galvanizados) y capas finas. [6, 7]
+* Piezas pequeñas, frágiles o de geometría compleja. [6, 7]
+
+---
+
+### **3. Fórmula de la dureza**
+
+El número de dureza Vickers (HV) se calcula a partir de la fuerza aplicada y la medida de la huella. La fórmula estandarizada es: 
+
+$$HV \approx 1.854 \times \frac{F}{d^2}$$
+
+Donde:
+* **HV** = Número de Dureza Vickers (a menudo expresado en kgf/mm²).
+* **F** = Fuerza o carga de ensayo aplicada, expresada en kilogramo-fuerza (kgf). 
+* **d** = Media aritmética de las dos diagonales medidas (`d = (d₁ + d₂) / 2`), expresada en milímetros (mm). 
+
+El factor constante **1.854** no es arbitrario; se deriva matemáticamente de la geometría de la pirámide con un ángulo de 136° y convierte el área proyectada (proporcional a `d²`) en el área superficial real de la huella. [8, 9]
+
+El resultado se reporta indicando el valor numérico, las siglas HV y la carga utilizada. Por ejemplo: **450 HV 30** significa una dureza Vickers de 450, obtenida con una carga de 30 kgf. 
+
+---
+
+### **4. Gráfico: Probeta y Penetrador**
+
+Las siguientes imágenes ilustran los elementos clave del ensayo: el penetrador, el proceso de indentación sobre la probeta y la huella resultante.
+
+| Penetrador y Proceso de Indentación | Micrografía de una Huella Vickers |
+| :---: | :---: |
+|![Esquema del ensayo Vickers](https://www.tec-science.com/wp-content/uploads/2021/03/en-hardness-test-vickers-process.jpg) |![Huella Vickers en un material metálico](https://www.researchgate.net/profile/Enrique-Rocha-Rangel/publication/28211170/figure/fig4/AS:667825068699651@1536233310069/Micrografia-tipica-de-las-indentaciones-Vickers-50-MPa.png) |
+| Esquema que muestra el penetrador piramidal de diamante presionando la superficie de la probeta. [5] | Imagen real de una huella Vickers vista a través de un microscopio. Nótese la forma cuadrada y las diagonales bien definidas. |
+
+---
+
+### **5. Aplicaciones y usos industriales**
+
+La precisión y versatilidad del ensayo Vickers lo hacen fundamental en múltiples campos industriales y de investigación.
+
+#### **Control de Calidad en Tratamientos Térmicos**
+Es la herramienta estándar para verificar la eficacia de tratamientos que endurecen la superficie de una pieza, como la **cementación, nitruración o temple por inducción**.  Se realizan series de mediciones de microdureza desde la superficie hacia el interior de la pieza para crear un **"perfil de dureza"**. Este perfil permite determinar con exactitud la "Profundidad de Dureza Efectiva" (CHD), un parámetro crítico para la vida útil de componentes como engranajes, ejes y cojinetes. 
+
+#### **Análisis de Uniones Soldadas**
+El ensayo Vickers es indispensable para evaluar la integridad de las soldaduras. El calor de la soldadura altera la microestructura del metal en la **Zona Afectada por el Calor (ZAT)**, que puede volverse demasiado dura (frágil) o demasiado blanda.  Se realizan "mapas de dureza" mediante una cuadrícula de indentaciones a través de la unión para visualizar la distribución de propiedades y detectar zonas de riesgo.  Este análisis es un requisito en la cualificación de procedimientos de soldadura según normas como la ISO 9015. 
+
+#### **Microdureza en Capas Finas y Piezas Pequeñas**
+La capacidad de usar cargas muy bajas (microdureza) permite medir con precisión:
+* **Recubrimientos y capas delgadas** (PVD, galvanizados) sin ser afectado por el material base. 
+* **Componentes pequeños o frágiles**, como piezas de relojería, alambres finos o componentes electrónicos. 
+* **Fases individuales** dentro de la microestructura de un material, siendo clave para la investigación y desarrollo. 
+
+---
+
+### **6. Ejemplos de materiales ensayados**
+
+A continuación, se presenta una tabla con valores de dureza Vickers típicos para diversos materiales y piezas específicas.
+
+| Material | Pieza Específica | Dureza Típica (HV) |
+| :--- | :--- | :--- |
+| **Acero al carbono** | Componentes estructurales, tornillería | 55–120 HV5 [1] |
+| **Acero inoxidable 347L** | Tuberías, componentes para alta temperatura | 180 HV30 [1] |
+| **Aceros tratados (templados)** | Engranajes, matrices, herramientas de corte | > 600 HV [2] |
+| **Capa cementada de un acero** | Pistas de rodamientos, ejes | 550 - 940 HV |
+| **Hierro** | Piezas de fundición | 30–80 HV5 [1] |
+| **Aluminio y sus aleaciones** | Perfiles, chapas para automoción | 20 - 150 HV (depende de la aleación) |
+| **Cobre** | Conductores eléctricos, tuberías | 40 - 120 HV (depende del temple) |
+| **Cerámicas (ej. Corindón)** | Aislantes, herramientas de corte avanzadas | ~2000 HV [10] |
+| **Titanio** | Implantes médicos, componentes aeroespaciales | ~350 HV |
+
+---
+
+### **7. Detalles de la referencia bibliográfica**
+
+La información presentada en este trabajo ha sido recopilada y sintetizada a partir de las siguientes fuentes técnicas y normativas:
+
+* ([https://es.wikipedia.org/wiki/Dureza_Vickers](https://es.wikipedia.org/wiki/Dureza_Vickers)) [1]
+* (https://www.struers.com/es-ES/Knowledge/Hardness-testing/Vickers) [4]
+* [https://www.tec-science.com/material-science/material-testing/vickers-hardness-test/](https://www.tec-science.com/material-science/material-testing/vickers-hardness-test/) [5]
+* [https://www.zwickroell.com/es/sectores/metales/normas-para-metales/ensayo-de-dureza-vickers-iso-6507/](https://www.zwickroell.com/es/sectores/metales/normas-para-metales/ensayo-de-dureza-vickers-iso-6507/)
+* [https://www.zwickroell.com/es/sectores/ensayo-de-materiales/ensayo-de-dureza/](https://www.zwickroell.com/es/sectores/ensayo-de-materiales/ensayo-de-dureza/)
+* [https://www.worldoftest.com/es/vickers-hardness-test-method](https://www.worldoftest.com/es/vickers-hardness-test-method)
+* ([https://www.youtube.com/watch?v=TfL2XuE9vrc](https://www.youtube.com/watch?v=TfL2XuE9vrc))
+* [https://www.buehler.com/mx/blog/pruebas-de-dureza-vickers/](https://www.buehler.com/mx/blog/pruebas-de-dureza-vickers/)
+* [https://www.seas.es/blog/seas-cursos-online/es-importante-la-dureza-de-una-soldadura/](https://www.seas.es/blog/seas-cursos-online/es-importante-la-dureza-de-una-soldadura/)
+* [https://www.infinitiaresearch.com/noticias/ensayo-dureza-vickers/](https://www.infinitiaresearch.com/noticias/ensayo-dureza-vickers/)
+* [https://xometry.pro/es/articulos/ensayos-dureza-metales/](https://xometry.pro/es/articulos/ensayos-dureza-metales/) [7]
+* [https://www.blog.metalinspec.com.mx/post/para-que-sirve-una-prueba-de-dureza](https://www.blog.metalinspec.com.mx/post/para-que-sirve-una-prueba-de-dureza) [3]
+* ([http://scielo.sld.cu/scielo.php?script=sci_arttext&pid=S2223-48612019000100010](http://scielo.sld.cu/scielo.php?script=sci_arttext&pid=S2223-48612019000100010))
+* [https://www.researchgate.net/figure/Micrografia-tipica-de-las-indentaciones-Vickers-50-MPa_fig4_28211170](https://www.researchgate.net/figure/Micrografia-tipica-de-las-indentaciones-Vickers-50-MPa_fig4_28211170)
+* [https://www.qatm.com/es/productos/ensayos-de-dureza/microdurometro/qness-60-a-evo/](https://www.qatm.com/es/productos/ensayos-de-dureza/microdurometro/qness-60-a-evo/)
+* (https://www.youtube.com/watch?v=yunvRrKTvq8)
+* (https://www.youtube.com/watch?v=nqtcYWeTnz8)
+* [https://www.emcotest.com/en/hardness-knowledge/overview-of-hardness-testing-methods/vickers-hardness-test](https://www.emcotest.com/en/hardness-knowledge/overview-of-hardness-testing-methods/vickers-hardness-test)
+* [https://www.hardnesstesters.com/test-types/vickers-hardness-testing](https://www.hardnesstesters.com/test-types/vickers-hardness-testing)
+* [https://www.britannica.com/science/Vickers-hardness](https://www.britannica.com/science/Vickers-hardness)
+* [https://www.matweb.com/reference/vickers-hardness.aspx](https://www.matweb.com/reference/vickers-hardness.aspx)
+* [https://www.hardnessgauge.com/vickers-hardness-test-procedures/](https://www.hardnessgauge.com/vickers-hardness-test-procedures/)
+* [https://www.worldoftest.com/ultimate-guide-vickers-hardness-tester-everything-you-need-know](https://www.worldoftest.com/ultimate-guide-vickers-hardness-tester-everything-you-need-know)
+* [https://www.youtube.com/watch?v=mQZqq1Ql2ts](https://www.youtube.com/watch?v=mQZqq1Ql2ts)
+* [https://www.metawelding.com/la-dureza-en-los-aceros-y-sus-solda](https://www.metawelding.com/la-dureza-en-los-aceros-y-sus-solda) [9]
+* [https://www.biltra.com/ensayo-de-dureza-vickers/](https://www.biltra.com/ensayo-de-dureza-vickers/)
+* [https://www.zwickroell.com/es/sectores/metales/normas-para-metales/profundidad-de-dureza-superficial-shd-o-profundidad-del-temple-ds/](https://www.zwickroell.com/es/sectores/metales/normas-para-metales/profundidad-de-dureza-superficial-shd-o-profundidad-del-temple-ds/)
+* [https://www.innovatest-europe.com/es/software/2d-3d-hardness-chart/](https://www.innovatest-europe.com/es/software/2d-3d-hardness-chart/)
+* (https://www.researchgate.net/figure/Figura-11-Mapas-de-microdureza-em-escala-Vickers-Hardness-Vickers-HV-no-aco-SAE-1045_fig7_335104976)
+* [https://scisa.es/ensayos-dureza/](https://scisa.es/ensayos-dureza/)
+* [https://www.interelectronix.com/es/que-es-el-ensayo-de-dureza-vickers.html](https://www.interelectronix.com/es/que-es-el-ensayo-de-dureza-vickers.html)
+* [https://www.innovatest-iberica.es/?p=349](https://www.innovatest-iberica.es/?p=349)
+* [https://sisbib.unmsm.edu.pe/bibvirtualdata/publicaciones/indata/vol4_2/a13.pdf](https://sisbib.unmsm.edu.pe/bibvirtualdata/publicaciones/indata/vol4_2/a13.pdf)
+* [https://personales.upv.es/~avicente/curso/unidad2/dureza.html](https://personales.upv.es/~avicente/curso/unidad2/dureza.html)
+* [https://tecnirad.com/index.php?option=com_content&view=article&id=85&Itemid=482](https://tecnirad.com/index.php?option=com_content&view=article&id=85&Itemid=482)
+* [http://www.durometrosymicrodurometros.com/dureza%20Vickers.htm](http://www.durometrosymicrodurometros.com/dureza%20Vickers.htm)
+* [https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/dureza__vickers-_ing._luis_gomez.pdf](https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/dureza__vickers-_ing._luis_gomez.pdf)
+* [https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/89001495_ajuste_montaje_verificacion_y_control_de_maquinas_-_parte_i_5_5_2_2.pdf](https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/89001495_ajuste_montaje_verificacion_y_control_de_maquinas_-_parte_i_5_5_2_2.pdf)
+* [https://es.wikipedia.org/wiki/Ensayo_de_dureza](https://es.wikipedia.org/wiki/Ensayo_de_dureza) [2]
+* (https://www.youtube.com/watch?v=oS6KCTBzxN0)
+* (https://www.youtube.com/watch?v=yunvRrKTvq8)
+* [https://www.youtube.com/watch?v=mQZqq1Ql2ts](https://www.youtube.com/watch?v=mQZqq1Ql2ts)
+* [https://www.metawelding.com/la-dureza-en-los-aceros-y-sus-solda](https://www.metawelding.com/la-dureza-en-los-aceros-y-sus-solda) [9]
+* [https://www.biltra.com/ensayo-de-dureza-vickers/](https://www.biltra.com/ensayo-de-dureza-vickers/)
+* [https://www.zwickroell.com/es/sectores/metales/normas-para-metales/profundidad-de-dureza-superficial-shd-o-profundidad-del-temple-ds/](https://www.zwickroell.com/es/sectores/metales/normas-para-metales/profundidad-de-dureza-superficial-shd-o-profundidad-del-temple-ds/)
+* [https://www.innovatest-europe.com/es/software/2d-3d-hardness-chart/](https://www.innovatest-europe.com/es/software/2d-3d-hardness-chart/)
+* (https://www.researchgate.net/figure/Figura-11-Mapas-de-microdureza-em-escala-Vickers-Hardness-Vickers-HV-no-aco-SAE-1045_fig7_335104976)
+* [https://scisa.es/ensayos-dureza/](https://scisa.es/ensayos-dureza/)
+* [https://www.interelectronix.com/es/que-es-el-ensayo-de-dureza-vickers.html](https://www.interelectronix.com/es/que-es-el-ensayo-de-dureza-vickers.html) [6]
+* [https://www.innovatest-iberica.es/?p=349](https://www.innovatest-iberica.es/?p=349)
+* [https://sisbib.unmsm.edu.pe/bibvirtualdata/publicaciones/indata/vol4_2/a13.pdf](https://sisbib.unmsm.edu.pe/bibvirtualdata/publicaciones/indata/vol4_2/a13.pdf) [10]
+* [https://personales.upv.es/~avicente/curso/unidad2/dureza.html](https://personales.upv.es/~avicente/curso/unidad2/dureza.html)
+* [https://tecnirad.com/index.php?option=com_content&view=article&id=85&Itemid=482](https://tecnirad.com/index.php?option=com_content&view=article&id=85&Itemid=482)
+* [http://www.durometrosymicrodurometros.com/dureza%20Vickers.htm](http://www.durometrosymicrodurometros.com/dureza%20Vickers.htm)
+* [https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/dureza__vickers-_ing._luis_gomez.pdf](https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/dureza__vickers-_ing._luis_gomez.pdf)
+* [https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/89001495_ajuste_montaje_verificacion_y_control_de_maquinas_-_parte_i_5_5_2_2.pdf](https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/89001495_ajuste_montaje_verificacion_y_control_de_maquinas_-_parte_i_5_5_2_2.pdf)
+* [https://es.wikipedia.org/wiki/Ensayo_de_dureza](https://es.wikipedia.org/wiki/Ensayo_de_dureza)
+* (https://www.youtube.com/watch?v=oS6KCTBzxN0)
+* (https://www.youtube.com/watch?v=yunvRrKTvq8)
+* [https://www.youtube.com/watch?v=mQZqq1Ql2ts](https://www.youtube.com/watch?v=mQZqq1Ql2ts)
+* [https://www.metawelding.com/la-dureza-en-los-aceros-y-sus-solda](https://www.metawelding.com/la-dureza-en-los-aceros-y-sus-solda)
+* [https://www.biltra.com/ensayo-de-dureza-vickers/](https://www.biltra.com/ensayo-de-dureza-vickers/)
+* [https://www.zwickroell.com/es/sectores/metales/normas-para-metales/profundidad-de-dureza-superficial-shd-o-profundidad-del-temple-ds/](https://www.zwickroell.com/es/sectores/metales/normas-para-metales/profundidad-de-dureza-superficial-shd-o-profundidad-del-temple-ds/)
+* [https://www.innovatest-europe.com/es/software/2d-3d-hardness-chart/](https://www.innovatest-europe.com/es/software/2d-3d-hardness-chart/)
+* ([https://www.researchgate.net/figure/Figura-11-Mapas-de-microdureza-em-escala-Vickers-Hardness-Vickers-HV-no-aco-SAE-1045_fig7_335104976](https://www.researchgate.net/figure/Figura-11-Mapas-de-microdureza-em-escala-Vickers-Hardness-Vickers-HV-no-aco-SAE-1045_fig7_335104976))
+* [https://scisa.es/ensayos-dureza/](https://scisa.es/ensayos-dureza/)
+* [https://www.interelectronix.com/es/que-es-el-ensayo-de-dureza-vickers.html](https://www.interelectronix.com/es/que-es-el-ensayo-de-dureza-vickers.html)
+* [https://www.innovatest-iberica.es/?p=349](https://www.innovatest-iberica.es/?p=349)
+* [https://sisbib.unmsm.edu.pe/bibvirtualdata/publicaciones/indata/vol4_2/a13.pdf](https://sisbib.unmsm.edu.pe/bibvirtualdata/publicaciones/indata/vol4_2/a13.pdf)
+* [https://personales.upv.es/~avicente/curso/unidad2/dureza.html](https://personales.upv.es/~avicente/curso/unidad2/dureza.html)
+* [https://tecnirad.com/index.php?option=com_content&view=article&id=85&Itemid=482](https://tecnirad.com/index.php?option=com_content&view=article&id=85&Itemid=482)
+* [http://www.durometrosymicrodurometros.com/dureza%20Vickers.htm](http://www.durometrosymicrodurometros.com/dureza%20Vickers.htm)
+* [https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/dureza__vickers-_ing._luis_gomez.pdf](https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/dureza__vickers-_ing._luis_gomez.pdf)
+* [https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/89001495_ajuste_montaje_verificacion_y_control_de_maquinas_-_parte_i_5_5_2_2.pdf](https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/89001495_ajuste_montaje_verificacion_y_control_de_maquinas_-_parte_i_5_5_2_2.pdf)
+* [https://es.wikipedia.org/wiki/Ensayo_de_dureza](https://es.wikipedia.org/wiki/Ensayo_de_dureza)
+* (https://www.youtube.com/watch?v=oS6KCTBzxN0)
+* (https://www.youtube.com/watch?v=yunvRrKTvq8)
+* [https://www.youtube.com/watch?v=mQZqq1Ql2ts](https://www.youtube.com/watch?v=mQZqq1Ql2ts)
+* [https://www.metawelding.com/la-dureza-en-los-aceros-y-sus-solda](https://www.metawelding.com/la-dureza-en-los-aceros-y-sus-solda)
+* [https://www.biltra.com/ensayo-de-dureza-vickers/](https://www.biltra.com/ensayo-de-dureza-vickers/)
+* [https://www.zwickroell.com/es/sectores/metales/normas-para-metales/profundidad-de-dureza-superficial-shd-o-profundidad-del-temple-ds/](https://www.zwickroell.com/es/sectores/metales/normas-para-metales/profundidad-de-dureza-superficial-shd-o-profundidad-del-temple-ds/)
+* [https://www.innovatest-europe.com/es/software/2d-3d-hardness-chart/](https://www.innovatest-europe.com/es/software/2d-3d-hardness-chart/)
+* ([https://www.researchgate.net/figure/Figura-11-Mapas-de-microdureza-em-escala-Vickers-Hardness-Vickers-HV-no-aco-SAE-1045_fig7_335104976](https://www.researchgate.net/figure/Figura-11-Mapas-de-microdureza-em-escala-Vickers-Hardness-Vickers-HV-no-aco-SAE-1045_fig7_335104976))
+* [https://scisa.es/ensayos-dureza/](https://scisa.es/ensayos-dureza/)
+* [https://www.interelectronix.com/es/que-es-el-ensayo-de-dureza-vickers.html](https://www.interelectronix.com/es/que-es-el-ensayo-de-dureza-vickers.html) [6]
+* [https://www.innovatest-iberica.es/?p=349](https://www.innovatest-iberica.es/?p=349)
+* [https://sisbib.unmsm.edu.pe/bibvirtualdata/publicaciones/indata/vol4_2/a13.pdf](https://sisbib.unmsm.edu.pe/bibvirtualdata/publicaciones/indata/vol4_2/a13.pdf) [10]
+* [https://personales.upv.es/~avicente/curso/unidad2/dureza.html](https://personales.upv.es/~avicente/curso/unidad2/dureza.html)
+* [https://tecnirad.com/index.php?option=com_content&view=article&id=85&Itemid=482](https://tecnirad.com/index.php?option=com_content&view=article&id=85&Itemid=482)
+* [http://www.durometrosymicrodurometros.com/dureza%20Vickers.htm](http://www.durometrosymicrodurometros.com/dureza%20Vickers.htm)
+* [https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/dureza__vickers-_ing._luis_gomez.pdf](https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/dureza__vickers-_ing._luis_gomez.pdf)
+* [https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/89001495_ajuste_montaje_verificacion_y_control_de_maquinas_-_parte_i_5_5_2_2.pdf](https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/89001495_ajuste_montaje_verificacion_y_control_de_maquinas_-_parte_i_5_5_2_2.pdf)
+* [https://es.wikipedia.org/wiki/Ensayo_de_dureza](https://es.wikipedia.org/wiki/Ensayo_de_dureza) [8]
+* (https://www.youtube.com/watch?v=oS6KCTBzxN0)
+* (https://www.youtube.com/watch?v=yunvRrKTvq8)
+* [https://www.youtube.com/watch?v=mQZqq1Ql2ts](https://www.youtube.com/watch?v=mQZqq1Ql2ts)
+* [https://www.metawelding.com/la-dureza-en-los-aceros-y-sus-solda](https://www.metawelding.com/la-dureza-en-los-aceros-y-sus-solda)
+* [https://www.biltra.com/ensayo-de-dureza-vickers/](https://www.biltra.com/ensayo-de-dureza-vickers/)
+* [https://www.zwickroell.com/es/sectores/metales/normas-para-metales/profundidad-de-dureza-superficial-shd-o-profundidad-del-temple-ds/](https://www.zwickroell.com/es/sectores/metales/normas-para-metales/profundidad-de-dureza-superficial-shd-o-profundidad-del-temple-ds/)
+* [https://www.innovatest-europe.com/es/software/2d-3d-hardness-chart/](https://www.innovatest-europe.com/es/software/2d-3d-hardness-chart/)
+* (https://www.researchgate.net/figure/Figura-11-Mapas-de-microdureza-em-escala-Vickers-Hardness-Vickers-HV-no-aco-SAE-1045_fig7_335104976)
+* [https://scisa.es/ensayos-dureza/](https://scisa.es/ensayos-dureza/)
+* [https://www.interelectronix.com/es/que-es-el-ensayo-de-dureza-vickers.html](https://www.interelectronix.com/es/que-es-el-ensayo-de-dureza-vickers.html)
+* [https://www.innovatest-iberica.es/?p=349](https://www.innovatest-iberica.es/?p=349)
+* [https://sisbib.unmsm.edu.pe/bibvirtualdata/publicaciones/indata/vol4_2/a13.pdf](https://sisbib.unmsm.edu.pe/bibvirtualdata/publicaciones/indata/vol4_2/a13.pdf)
+* [https://personales.upv.es/~avicente/curso/unidad2/dureza.html](https://personales.upv.es/~avicente/curso/unidad2/dureza.html)
+* [https://tecnirad.com/index.php?option=com_content&view=article&id=85&Itemid=482](https://tecnirad.com/index.php?option=com_content&view=article&id=85&Itemid=482)
+* [http://www.durometrosymicrodurometros.com/dureza%20Vickers.htm](http://www.durometrosymicrodurometros.com/dureza%20Vickers.htm)
+* [https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/dureza__vickers-_ing._luis_gomez.pdf](https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/dureza__vickers-_ing._luis_gomez.pdf)
+* [https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/89001495_ajuste_montaje_verificacion_y_control_de_maquinas_-_parte_i_5_5_2_2.pdf](https://gomez2010.weebly.com/uploads/5/8/0/2/5802271/89001495_ajuste_montaje_verificacion_y_control_de_maquinas_-_parte_i_5_5_2_2.pdf)
+* [https://es.wikipedia.org/wiki/Ensayo_de_dureza](https://es.wikipedia.org/wiki/Ensayo_de_dureza) 
