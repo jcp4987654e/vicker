@@ -129,6 +129,10 @@
 </head>
 <body class="overflow-x-hidden">
     
+    <button id="fullscreen-btn" class="fixed top-4 right-4 z-50 p-3 bg-white/80 rounded-full shadow-lg hover:bg-gray-200 transition">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-800"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+    </button>
+
     <section id="caratula" class="relative text-white" style="min-height: 100vh; overflow: hidden;">
         <div class="absolute inset-0 bg-gray-900">
             <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726a?q=80&w=2070&auto=format&fit=crop" alt="Fondo tecnológico abstracto" class="w-full h-full object-cover opacity-20">
@@ -525,6 +529,16 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            fullscreenBtn.addEventListener('click', () => {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen();
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    }
+                }
+            });
 
             const mainHeader = document.getElementById('main-header');
             const coverSection = document.getElementById('caratula');
@@ -756,33 +770,6 @@
             });
 
             updateChart();
-
-            function setupVideoLoader(buttonId, inputId, frameId) {
-                const loadBtn = document.getElementById(buttonId);
-                const urlInput = document.getElementById(inputId);
-                const videoFrame = document.getElementById(frameId);
-
-                loadBtn.addEventListener('click', () => {
-                    const url = urlInput.value;
-                    let videoId = null;
-                    
-                    if (url.includes('youtube.com/watch?v=')) {
-                        videoId = new URL(url).searchParams.get('v');
-                    } else if (url.includes('youtu.be/')) {
-                        videoId = new URL(url).pathname.slice(1);
-                    }
-                    
-                    if (videoId) {
-                        videoFrame.src = `https://www.youtube.com/embed/${videoId}`;
-                    } else {
-                        videoFrame.src = '';
-                    }
-                });
-            }
-
-            setupVideoLoader('loadVideoBtn1', 'videoUrl1', 'videoFrame1');
-            setupVideoLoader('loadVideoBtn2', 'videoUrl2', 'videoFrame2');
-            setupVideoLoader('loadVideoBtn3', 'videoUrl3', 'videoFrame3');
 
         });
     </script>
