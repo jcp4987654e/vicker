@@ -154,7 +154,7 @@
                 </button>
             </div>
             
-            <div id="integrantes-content-wrapper" class="content-container absolute inset-0 w-full flex-col items-center justify-center opacity-0 pointer-events-none">
+            <div id="integrantes-content-wrapper" class="content-container absolute inset-0 w-full flex-col items-center justify-center opacity-0 pointer-events-none flex">
                  <p class="text-4xl font-bold mb-8">Integrantes</p>
                  <div class="text-5xl md:text-7xl font-semibold space-y-4">
                     <p class="integrante-nombre">Jesús Castellanos</p>
@@ -777,6 +777,97 @@
             });
 
             updateChart();
+
+            // Caratula Interaction
+            const startBtn = document.getElementById('start-presentation-btn');
+            const initialContent = document.getElementById('initial-content-wrapper');
+            const integrantesContent = document.getElementById('integrantes-content-wrapper');
+            const firstSection = document.getElementById('intro');
+
+            startBtn.addEventListener('click', () => {
+                initialContent.style.opacity = '0';
+                initialContent.style.pointerEvents = 'none';
+                
+                integrantesContent.style.opacity = '1';
+                integrantesContent.style.pointerEvents = 'auto';
+
+                setTimeout(() => {
+                    firstSection.scrollIntoView({ behavior: 'smooth' });
+                }, 2500); 
+            });
+
+
+            // Presentation Mode
+            const playBtn = document.getElementById('play-presentation-btn');
+            const playIcon = document.getElementById('play-icon');
+            const stopIcon = document.getElementById('stop-icon');
+            const prevNav = document.getElementById('presentation-nav-prev');
+            const nextNav = document.getElementById('presentation-nav-next');
+            const prevBtn = prevNav.querySelector('button');
+            const nextBtn = nextNav.querySelector('button');
+            const presentationSlides = Array.from(document.querySelectorAll('section'));
+            let presentationModeActive = false;
+            let currentSlide = 0;
+
+            function updateNavButtons() {
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === presentationSlides.length - 1;
+            }
+
+            playBtn.addEventListener('click', () => {
+                presentationModeActive = !presentationModeActive;
+                if (presentationModeActive) {
+                    playIcon.classList.add('hidden');
+                    stopIcon.classList.remove('hidden');
+                    prevNav.style.opacity = '1';
+                    nextNav.style.opacity = '1';
+                    prevNav.style.pointerEvents = 'auto';
+                    nextNav.style.pointerEvents = 'auto';
+                    document.documentElement.style.scrollSnapType = 'y mandatory';
+                    presentationSlides.forEach(slide => slide.style.scrollSnapAlign = 'start');
+                    presentationSlides[currentSlide].scrollIntoView({behavior: 'smooth'});
+                    updateNavButtons();
+                } else {
+                    playIcon.classList.remove('hidden');
+                    stopIcon.classList.add('hidden');
+                    prevNav.style.opacity = '0';
+                    nextNav.style.opacity = '0';
+                    prevNav.style.pointerEvents = 'none';
+                    nextNav.style.pointerEvents = 'none';
+                    document.documentElement.style.scrollSnapType = '';
+                    presentationSlides.forEach(slide => slide.style.scrollSnapAlign = '');
+                }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                if (currentSlide < presentationSlides.length - 1) {
+                    currentSlide++;
+                    presentationSlides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    presentationSlides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+
+             const slideObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                       const intersectingSlideIndex = presentationSlides.findIndex(slide => slide.id === entry.target.id);
+                       if (intersectingSlideIndex !== -1) {
+                           currentSlide = intersectingSlideIndex;
+                           if(presentationModeActive){
+                               updateNavButtons();
+                           }
+                       }
+                    }
+                });
+            }, { threshold: 0.6 });
+
+            presentationSlides.forEach(slide => slideObserver.observe(slide));
 
         });
     </script>
