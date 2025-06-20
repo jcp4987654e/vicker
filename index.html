@@ -118,11 +118,14 @@
         .image-modal-content {
             transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
         }
+        .clickable-image {
+            cursor: zoom-in;
+        }
     </style>
 </head>
 <body class="overflow-x-hidden">
     
-    <div class="fixed top-4 right-4 z-50 flex space-x-2">
+    <div class="fixed top-4 right-4 z-[60] flex space-x-2">
         <button id="play-presentation-btn" class="p-3 bg-white/80 rounded-full shadow-lg hover:bg-gray-200 transition">
             <svg id="play-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
             <svg id="stop-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hidden"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg>
@@ -132,12 +135,12 @@
         </button>
     </div>
 
-    <div id="presentation-nav-prev" class="presentation-nav fixed left-4 top-1/2 -translate-y-1/2 z-50 opacity-0 pointer-events-none">
+    <div id="presentation-nav-prev" class="presentation-nav fixed left-4 top-1/2 -translate-y-1/2 z-[60] opacity-0 pointer-events-none">
         <button class="p-4 bg-white/80 rounded-full shadow-lg hover:bg-gray-200 transition disabled:opacity-50 disabled:cursor-not-allowed">
              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </button>
     </div>
-     <div id="presentation-nav-next" class="presentation-nav fixed right-4 top-1/2 -translate-y-1/2 z-50 opacity-0 pointer-events-none">
+     <div id="presentation-nav-next" class="presentation-nav fixed right-4 top-1/2 -translate-y-1/2 z-[60] opacity-0 pointer-events-none">
         <button class="p-4 bg-white/80 rounded-full shadow-lg hover:bg-gray-200 transition">
              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
         </button>
@@ -210,7 +213,7 @@
                 <div class="text-center">
                     <h2 class="text-3xl md:text-5xl font-bold text-[#2D5A6C] mb-4">El Ensayo de Dureza Universal</h2>
                     <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-600 mb-12">
-                        Desarrollado en la década de 1920 por Robert L. Smith y George E. Sandland en la empresa británica Vickers, este ensayo revolucionó la ciencia de materiales. Ofreció un método preciso y versátil para medir la resistencia de un material a ser deformado.
+                         Desarrollado entre 1921 y 1924 por Robert L. Smith y George E. Sandland en los laboratorios de Vickers Ltd., el ensayo de dureza Vickers surgió como una solución a las limitaciones del método Brinell. La necesidad de un método más preciso para materiales duros, piezas delgadas y capas superficiales impulsó esta innovación, consolidándose como una herramienta indispensable en la metalurgia avanzada y la diversificación industrial de la posguerra.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto mb-12">
                         <div class="text-center">
@@ -346,33 +349,33 @@
         <section id="aplicaciones" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                     <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Aplicaciones Industriales Clave</h2>
-                     <p class="max-w-3xl mx-auto text-lg text-gray-600">La precisión del ensayo Vickers lo hace indispensable en múltiples campos donde las propiedades mecánicas son críticas. Explora las aplicaciones más comunes.</p>
+                     <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Aplicaciones Industriales y de Investigación</h2>
+                     <p class="max-w-3xl mx-auto text-lg text-gray-600">La precisión y versatilidad del ensayo Vickers lo hacen indispensable en una multitud de campos. Explora las aplicaciones más comunes.</p>
                      <div class="h-line mt-6"></div>
                 </div>
                 <div class="flex flex-col md:flex-row gap-8">
                     <div class="md:w-1/3">
                         <div id="app-tabs" class="flex md:flex-col justify-center gap-4">
                             <button data-target="app1" class="app-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left active">Tratamientos Térmicos</button>
-                            <button data-target="app2" class="app-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left">Análisis de Soldaduras</button>
+                            <button data-target="app2" class="app-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left">Uniones Soldadas</button>
                             <button data-target="app3" class="app-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left">Microdureza</button>
                         </div>
                     </div>
                     <div class="md:w-2/3">
                         <div id="app1" class="app-content card p-8">
-                             <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">🌡️ Control en Tratamientos Térmicos</h3>
-                             <img src="https://www.zwickroell.com/wp-content/uploads/2021/05/Verlauf-der-Haerte-in-Abhaengigkeit-vom-Abstand-von-der-Oberflaeche-bei-der-Einsatzhaertetiefe-CHD-650x400.png" alt="Gráfico de perfil de dureza" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/94a3b8?text=Perfil+de+Dureza';">
-                             <p class="text-gray-700">Es el método estándar para verificar la eficacia de tratamientos como la cementación o el temple. Se crean "perfiles de dureza", midiendo desde la superficie hacia el núcleo, para determinar con exactitud la profundidad de la capa endurecida (CHD), un parámetro vital para engranajes y ejes.</p>
+                             <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">🌡️ Control de Tratamientos Térmicos</h3>
+                             <p class="text-gray-700 mb-4">Es el método estándar para verificar la eficacia de tratamientos como la cementación o el temple. Se crean "perfiles de dureza" midiendo desde la superficie hacia el núcleo, para determinar con exactitud la Profundidad de Dureza Efectiva (CHD), un parámetro vital para engranajes y ejes.</p>
+                             <img src="https://www.zwickroell.com/wp-content/uploads/2021/05/Verlauf-der-Haerte-in-Abhaengigkeit-vom-Abstand-von-der-Oberflaeche-bei-der-Einsatzhaertetiefe-CHD-650x400.png" alt="Gráfico de perfil de dureza" class="w-full h-auto object-cover rounded-lg clickable-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/94a3b8?text=Perfil+de+Dureza';">
                         </div>
                         <div id="app2" class="app-content hidden card p-8">
                              <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">🔗 Análisis de Uniones Soldadas</h3>
-                             <img src="https://www.researchgate.net/profile/Nicollas-Arruda/publication/335104976/figure/fig7/AS:790104193568771@1565388175512/Mapas-de-microdureza-em-escala-Vickers-Hardness-Vickers-HV-no-aco-SAE-1045-com.png" alt="Mapa de dureza en soldadura" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/94a3b8?text=Mapa+de+Dureza';">
-                             <p class="text-gray-700">El calor de la soldadura altera las propiedades del metal. Con Vickers se crean "mapas de dureza" para visualizar la distribución de propiedades en la unión y detectar zonas frágiles o reblandecidas que podrían causar fallos. Es un requisito en la calificación de procedimientos de soldadura.</p>
+                             <p class="text-gray-700 mb-4">El calor de la soldadura altera la microestructura del material. Con Vickers se crean "mapas de dureza" para visualizar la distribución de propiedades en la unión y detectar zonas frágiles o reblandecidas. Es un requisito en la calificación de procedimientos de soldadura.</p>
+                             <img src="https://www.researchgate.net/profile/Nicollas-Arruda/publication/335104976/figure/fig7/AS:790104193568771@1565388175512/Mapas-de-microdureza-em-escala-Vickers-Hardness-Vickers-HV-no-aco-SAE-1045-com.png" alt="Mapa de dureza en soldadura" class="w-full h-auto object-cover rounded-lg clickable-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/94a3b8?text=Mapa+de+Dureza';">
                         </div>
                         <div id="app3" class="app-content hidden card p-8">
                              <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">🔬 Microdureza y Capas Finas</h3>
-                             <img src="https://www.innovatest-europe.com/wp-content/uploads/2019/08/weld-inspection-hardness-testing-1024x768.jpg" alt="Ensayo de microdureza en laboratorio" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/94a3b8?text=Microdureza';">
-                             <p class="text-gray-700">La capacidad de usar cargas muy ligeras (microdureza) permite medir con precisión recubrimientos delgados (PVD, galvanizados), componentes electrónicos, piezas de relojería, o incluso fases individuales dentro de la microestructura de un material, siendo clave para la investigación y el desarrollo.</p>
+                             <p class="text-gray-700 mb-4">La capacidad de usar cargas muy ligeras (microdureza) permite medir con precisión recubrimientos delgados (PVD, galvanizados), componentes electrónicos, o incluso fases individuales dentro de la microestructura de un material, siendo clave para la investigación y el desarrollo.</p>
+                             <img src="https://www.innovatest-europe.com/wp-content/uploads/2019/08/weld-inspection-hardness-testing-1024x768.jpg" alt="Ensayo de microdureza en laboratorio" class="w-full h-auto object-cover rounded-lg clickable-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/94a3b8?text=Microdureza';">
                         </div>
                     </div>
                 </div>
@@ -539,6 +542,22 @@
         </div>
     </footer>
 
+    <!-- Image Modal -->
+    <div id="image-modal" class="image-modal-backdrop fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-[70] hidden opacity-0">
+        <div class="image-modal-content bg-white p-4 rounded-lg shadow-xl w-11/12 max-w-4xl max-h-[90vh] flex flex-col scale-95 opacity-0 relative">
+            <button id="modal-close-btn" class="absolute -top-4 -right-4 bg-white text-black rounded-full h-10 w-10 flex items-center justify-center text-2xl font-bold shadow-lg">&times;</button>
+            <div id="modal-title-container" class="flex-shrink-0 mb-4">
+                <h3 id="modal-title" class="text-2xl font-bold text-[#2D5A6C]"></h3>
+            </div>
+            <div class="flex-grow overflow-hidden flex items-center justify-center">
+                <img id="modal-image" src="" alt="" class="max-w-full max-h-full object-contain">
+            </div>
+            <div id="modal-description-container" class="flex-shrink-0 mt-4">
+                <p id="modal-description" class="text-gray-600"></p>
+            </div>
+        </div>
+    </div>
+
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -580,11 +599,13 @@
                 });
             });
 
-            const sections = document.querySelectorAll('main section');
+            const sections = Array.from(document.querySelectorAll('main section'));
+            const allSlides = [document.getElementById('caratula'), ...sections];
             const navLinks = document.querySelectorAll('.nav-link');
+            
             window.onscroll = () => {
                 let current = '';
-                sections.forEach(section => {
+                allSlides.forEach(section => {
                     const sectionTop = section.offsetTop;
                     if (pageYOffset >= sectionTop - 100) {
                         current = section.getAttribute('id');
@@ -790,7 +811,8 @@
             const integrantesContent = document.getElementById('integrantes-content-wrapper');
             const firstSection = document.getElementById('intro');
 
-            startBtn.addEventListener('click', () => {
+            startBtn.addEventListener('click', (e) => {
+                e.preventDefault();
                 initialContent.style.opacity = '0';
                 initialContent.style.pointerEvents = 'none';
                 
@@ -874,6 +896,42 @@
             }, { threshold: 0.6 });
 
             presentationSlides.forEach(slide => slideObserver.observe(slide));
+            
+            // Image Modal Logic
+            const modal = document.getElementById('image-modal');
+            const modalImg = document.getElementById('modal-image');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const closeModalBtn = document.getElementById('modal-close-btn');
+
+            document.querySelectorAll('.clickable-image').forEach(img => {
+                img.addEventListener('click', () => {
+                    const contentContainer = img.closest('.app-content');
+                    modalImg.src = img.src;
+                    modalTitle.textContent = contentContainer.querySelector('h3').textContent;
+                    modalDescription.textContent = contentContainer.querySelector('p').textContent;
+                    modal.classList.remove('hidden');
+                    setTimeout(() => {
+                        modal.classList.remove('opacity-0');
+                        modal.querySelector('.image-modal-content').classList.remove('opacity-0', 'scale-95');
+                    }, 10);
+                });
+            });
+
+            const closeModal = () => {
+                modal.querySelector('.image-modal-content').classList.add('opacity-0', 'scale-95');
+                 modal.classList.add('opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
 
         });
     </script>
