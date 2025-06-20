@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Serene Tech (Background: #FDFDFB, Text: #333333, Primary: #2D5A6C, Accent: #A58D7B) -->
     <!-- Application Structure Plan: A single-page, multi-section layout designed for guided discovery. It starts with a broad introduction, then drills down into the 'how' (interactive procedure), 'what' (formula calculator), and 'what for' (materials comparison and applications). This task-oriented flow (Understand -> Calculate -> Compare -> Apply) is more intuitive for learning than a linear report structure, encouraging interaction at each stage. Navigation is handled by a sticky header for easy access to all sections. -->
     <!-- Visualization & Content Choices:
@@ -211,19 +211,18 @@
         <section id="intro" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center">
-                    <h2 class="text-3xl md:text-5xl font-bold text-[#2D5A6C] mb-4">El Ensayo de Dureza Universal</h2>
+                    <h2 class="text-3xl md:text-5xl font-bold text-[#2D5A6C] mb-4">Introducción: La Huella de la Precisión</h2>
                     <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-600 mb-12">
-                         Desarrollado entre 1921 y 1924 por Robert L. Smith y George E. Sandland en los laboratorios de Vickers Ltd., el ensayo de dureza Vickers surgió como una solución a las limitaciones del método Brinell. La necesidad de un método más preciso para materiales duros, piezas delgadas y capas superficiales impulsó esta innovación, consolidándose como una herramienta indispensable en la metalurgia avanzada y la diversificación industrial de la posguerra.
+                        La dureza se define como la resistencia de un material a la deformación plástica localizada. El ensayo Vickers es reconocido como uno de los métodos más precisos y versátiles para cuantificar esta propiedad, a menudo denominado el "ensayo universal" por su amplio rango de aplicaciones, capaz de medir desde metales muy blandos hasta las cerámicas más duras. Una huella nítida y simétrica no es casual, sino la consecuencia de un procedimiento meticuloso y una preparación de muestra impecable.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto mb-12">
                         <div class="text-center">
-                             <!-- PARA AÑADIR/CAMBIAR IMAGEN DE LA FÁBRICA: Reemplaza la URL de abajo. -->
-                            <img src="https://c8.alamy.com/comp/2KFBP2D/vickers-armstrong-works-sheffield-2KFBP2D.jpg" alt="Fábrica de Vickers-Armstrongs en Sheffield" class="mx-auto h-40 object-contain mb-2 rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/400x250/e2e8f0/94a3b8?text=Fábrica+Vickers';">
+                            <img src="https://c8.alamy.com/comp/2KFBP2D/vickers-armstrong-works-sheffield-2KFBP2D.jpg" alt="Fábrica de Vickers-Armstrongs en Sheffield" class="mx-auto h-40 object-contain mb-2 rounded-lg clickable-image" data-title="Vickers Ltd." data-description="Fábrica de Vickers en Sheffield, cuna del ensayo de dureza y de importantes avances en la metalurgia del siglo XX." onerror="this.onerror=null;this.src='https://placehold.co/400x250/e2e8f0/94a3b8?text=Fábrica+Vickers';">
                             <p class="text-sm font-semibold text-gray-600">Fábrica de Vickers en Sheffield, cuna del ensayo.</p>
                         </div>
                         <div class="text-center">
-                            <!-- PARA AÑADIR LA FOTO DE LOS CREADORES: Reemplaza la URL de abajo. -->
-                            <img src="https://placehold.co/400x250/e2e8f0/94a3b8?text=Foto+de+Smith+y+Sandland" alt="Robert L. Smith y George E. Sandland, creadores del método" class="mx-auto h-40 object-contain mb-2 rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/400x250/e2e8f0/94a3b8?text=Creadores';">
+                             <!-- PARA AÑADIR/CAMBIAR FOTO DE LOS CREADORES: Reemplaza la URL de abajo. -->
+                            <img src="https://placehold.co/400x250/e2e8f0/94a3b8?text=Foto+de+Smith+y+Sandland" alt="Robert L. Smith y George E. Sandland, creadores del método" class="mx-auto h-40 object-contain mb-2 rounded-lg clickable-image" data-title="Los Inventores" data-description="Robert L. Smith y George E. Sandland, los ingenieros de Vickers Ltd. que desarrollaron el método entre 1921 y 1925." onerror="this.onerror=null;this.src='https://placehold.co/400x250/e2e8f0/94a3b8?text=Creadores';">
                             <p class="text-sm font-semibold text-gray-600">Robert L. Smith y George E. Sandland, los inventores.</p>
                         </div>
                     </div>
@@ -232,24 +231,22 @@
                 <div class="h-line mb-12"></div>
                 
                 <div class="max-w-5xl mx-auto card p-8">
-                     <p class="text-center text-xl font-semibold mb-6 text-[#2D5A6C]">El Principio: Una Huella de Precisión</p>
+                     <p class="text-center text-xl font-semibold mb-6 text-[#2D5A6C]">Principio Fundamental: La Pirámide de Diamante</p>
+                     <p class="text-center text-gray-700 mb-8">El núcleo del método reside en su indentador: una pirámide de diamante con un ángulo de 136°. Este diseño garantiza que la huella sea geométricamente similar sin importar la carga, permitiendo una única escala continua (HV) y una compatibilidad con la escala Brinell (HB) en durezas medias.</p>
                     <div class="flex flex-col md:flex-row items-center justify-around gap-6">
                         <div class="text-center w-full md:w-1/3">
-                            <img src="https://www.ametektest.com/-/media/ametektest/images/products/hardnesstesters/vickers-indentor_300x300.jpg?h=300&w=300&la=en&hash=F2F50920C0D76536F2C81DF4487DF3B8" alt="Penetrador de diamante Vickers" class="mx-auto h-32 object-contain mb-4 rounded" onerror="this.onerror=null;this.src='https://placehold.co/200x200/e2e8f0/94a3b8?text=Penetrador';">
+                            <img src="https://www.ametektest.com/-/media/ametektest/images/products/hardnesstesters/vickers-indentor_300x300.jpg?h=300&w=300&la=en&hash=F2F50920C0D76536F2C81DF4487DF3B8" alt="Penetrador de diamante Vickers" class="mx-auto h-32 object-contain mb-4 rounded clickable-image" data-title="1. Penetrador de Diamante" data-description="Una pirámide de diamante con un ángulo de 136°, que no se deforma, presiona el material." onerror="this.onerror=null;this.src='https://placehold.co/200x200/e2e8f0/94a3b8?text=Penetrador';">
                             <h3 class="font-bold text-lg">1. Penetrador de Diamante</h3>
-                            <p class="text-sm text-gray-600">Una pirámide de diamante con un ángulo de 136°, que no se deforma, presiona el material.</p>
                         </div>
                         <div class="text-4xl font-thin text-[#A58D7B] self-center hidden md:block">➔</div>
                          <div class="text-center w-full md:w-1/3">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Vickers_hardness_impression.jpg/300px-Vickers_hardness_impression.jpg" alt="Huella de dureza Vickers" class="mx-auto h-32 object-contain mb-4 rounded" onerror="this.onerror=null;this.src='https://placehold.co/200x200/e2e8f0/94a3b8?text=Huella';">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Vickers_hardness_impression.jpg/300px-Vickers_hardness_impression.jpg" alt="Huella de dureza Vickers" class="mx-auto h-32 object-contain mb-4 rounded clickable-image" data-title="2. Se crea una huella" data-description="Se aplica una fuerza controlada (F) durante un tiempo estándar (10-15s), dejando una huella microscópica." onerror="this.onerror=null;this.src='https://placehold.co/200x200/e2e8f0/94a3b8?text=Huella';">
                             <h3 class="font-bold text-lg">2. Se crea una huella</h3>
-                            <p class="text-sm text-gray-600">Se aplica una fuerza controlada (F) durante 10-15 segundos, dejando una huella microscópica.</p>
                         </div>
                         <div class="text-4xl font-thin text-[#A58D7B] self-center hidden md:block">➔</div>
                         <div class="text-center w-full md:w-1/3">
-                            <img src="https://www.qatm.com/images/800x800-qpix-control2-messrahmen.jpg" alt="Medición de la huella en microscopio con retícula" class="mx-auto h-32 object-contain mb-4 rounded" onerror="this.onerror=null;this.src='https://placehold.co/200x200/e2e8f0/94a3b8?text=Medición';">
+                            <img src="https://www.qatm.com/images/800x800-qpix-control2-messrahmen.jpg" alt="Medición de la huella en microscopio con retícula" class="mx-auto h-32 object-contain mb-4 rounded clickable-image" data-title="3. Se mide la huella" data-description="Se miden las diagonales (d) de la huella. Un material más duro deja una huella más pequeña." onerror="this.onerror=null;this.src='https://placehold.co/200x200/e2e8f0/94a3b8?text=Medición';">
                             <h3 class="font-bold text-lg">3. Se mide la huella</h3>
-                            <p class="text-sm text-gray-600">Se miden las diagonales (d) de la huella. Un material más duro deja una huella más pequeña.</p>
                         </div>
                     </div>
                 </div>
@@ -259,35 +256,35 @@
         <section id="proceso" class="py-16 md:py-24 bg-gray-50">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">El Proceso, Paso a Paso</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">El Procedimiento Estandarizado</h2>
                     <p class="max-w-3xl mx-auto text-lg text-gray-600">
-                        Para garantizar resultados fiables (según normas ISO 6507 y ASTM E384), el ensayo Vickers sigue un procedimiento estandarizado. Haz clic para explorar cada etapa.
+                        Regulado por normas como ISO 6507 y ASTM E384, el ensayo Vickers sigue un ciclo preciso para garantizar resultados repetibles y comparables a nivel mundial.
                     </p>
                      <div class="h-line mt-6"></div>
                 </div>
                 <div class="flex flex-col md:flex-row gap-8">
                     <div class="md:w-1/3">
                         <div id="proceso-tabs" class="flex md:flex-col justify-center gap-4">
-                            <button data-target="paso1" class="proceso-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left active">1. Preparación</button>
-                            <button data-target="paso2" class="proceso-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left">2. Indentación</button>
-                            <button data-target="paso3" class="proceso-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left">3. Medición</button>
+                            <button data-target="paso1" class="proceso-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left active">1. Preparación de Muestra</button>
+                            <button data-target="paso2" class="proceso-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left">2. Ciclo de Indentación</button>
+                            <button data-target="paso3" class="proceso-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left">3. Medición Óptica</button>
                         </div>
                     </div>
                     <div class="md:w-2/3">
-                        <div id="paso1" class="proceso-content card p-8">
+                        <div id="paso1" class="app-content card p-8">
                              <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">Paso 1: Preparación de la Muestra</h3>
-                            <img src="https://www.metallographic.com/images/Grinding-Polishing-2.jpg" alt="Pulido metalográfico a espejo" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x300/e2e8f0/94a3b8?text=Pulido+a+Espejo';">
-                            <p class="text-gray-700">La fiabilidad del ensayo depende críticamente de la calidad de la superficie. Esta debe ser plana, lisa y libre de contaminantes. Para ensayos de microdureza, se requiere un **pulido metalográfico a espejo**. Una superficie imperfecta distorsionaría la forma de la huella y conduciría a mediciones erróneas.</p>
+                             <p class="text-gray-700 mb-4">Este es el paso más crítico. La superficie debe ser plana, lisa y limpia para obtener una huella nítida. Para microdureza se requiere un pulido a espejo. Una mala preparación conduce a resultados erróneos.</p>
+                            <img src="https://www.metallographic.com/images/Grinding-Polishing-2.jpg" alt="Pulido metalográfico a espejo" class="w-full h-auto object-cover rounded-lg clickable-image" onerror="this.onerror=null;this.src='https://placehold.co/600x300/e2e8f0/94a3b8?text=Pulido+a+Espejo';">
                         </div>
-                        <div id="paso2" class="proceso-content hidden card p-8">
-                             <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">Paso 2: Aplicación de la Carga (Indentación)</h3>
-                            <img src="https://www.tec-science.com/wp-content/uploads/2021/03/en-hardness-test-vickers-process.jpg" alt="Proceso de indentación Vickers sobre la probeta" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x300/e2e8f0/94a3b8?text=Indentación';">
-                            <p class="text-gray-700">Se presiona el penetrador de diamante sobre la superficie. La fuerza de ensayo (`F`) se aplica de forma suave y controlada, manteniéndose constante durante un tiempo estándar de **10 a 15 segundos**. Este ciclo asegura que el material se deforme plásticamente de manera estable.</p>
+                        <div id="paso2" class="app-content hidden card p-8">
+                             <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">Paso 2: Ciclo de Indentación</h3>
+                             <p class="text-gray-700 mb-4">La fuerza se aplica de forma suave y controlada (típicamente en 7s), se mantiene constante durante un tiempo estándar (10-15s) para permitir la deformación plástica completa, y luego se retira suavemente.</p>
+                            <img src="https://www.tec-science.com/wp-content/uploads/2021/03/en-hardness-test-vickers-process.jpg" alt="Proceso de indentación Vickers sobre la probeta" class="w-full h-auto object-cover rounded-lg clickable-image" onerror="this.onerror=null;this.src='https://placehold.co/600x300/e2e8f0/94a3b8?text=Indentación';">
                         </div>
-                        <div id="paso3" class="proceso-content hidden card p-8">
+                        <div id="paso3" class="app-content hidden card p-8">
                              <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">Paso 3: Medición Óptica de la Huella</h3>
-                            <img src="https://www.researchgate.net/profile/Enrique-Rocha-Rangel/publication/28211170/figure/fig4/AS:667825068699651@1536233310069/Micrografia-tipica-de-las-indentaciones-Vickers-50-MPa.png" alt="Huella de dureza Vickers en microscopio" class="w-full h-48 object-cover rounded-lg mb-4" onerror="this.onerror=null;this.src='https://placehold.co/600x300/e2e8f0/94a3b8?text=Huella+Vickers';">
-                            <p class="text-gray-700">Tras retirar la carga, un microscopio mide con precisión las dos diagonales (`d₁` y `d₂`) de la huella cuadrada. Se calcula la **media aritmética de ambas (`d`)** para compensar posibles distorsiones y obtener una base de cálculo más exacta.</p>
+                             <p class="text-gray-700 mb-4">Con un microscopio, se miden ambas diagonales (d₁ y d₂) de la huella. Se calcula su promedio (d) para compensar distorsiones por recuperación elástica y anisotropía del material, asegurando una medición precisa.</p>
+                            <img src="https://www.researchgate.net/profile/Enrique-Rocha-Rangel/publication/28211170/figure/fig4/AS:667825068699651@1536233310069/Micrografia-tipica-de-las-indentaciones-Vickers-50-MPa.png" alt="Huella de dureza Vickers en microscopio" class="w-full h-auto object-cover rounded-lg clickable-image" onerror="this.onerror=null;this.src='https://placehold.co/600x300/e2e8f0/94a3b8?text=Huella+Vickers';">
                         </div>
                     </div>
                 </div>
@@ -304,8 +301,7 @@
                     <div class="h-line mt-6"></div>
                 </div>
                 <div class="max-w-3xl mx-auto card p-8">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Vickers_hardness_test_schema.svg/500px-Vickers_hardness_test_schema.svg.png" alt="Esquema del ensayo Vickers con probeta y penetrador" class="w-full h-auto object-contain rounded-lg" onerror="this.onerror=null;this.src='https://placehold.co/800x600/e2e8f0/94a3b8?text=Esquema+del+Ensayo';">
-                    <p class="text-center text-gray-600 mt-4">El penetrador piramidal crea una huella cuadrada en la superficie de la probeta. La medición de sus diagonales (`d1`, `d2`) y la fuerza (`F`) son los datos necesarios para calcular la dureza.</p>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Vickers_hardness_test_schema.svg/500px-Vickers_hardness_test_schema.svg.png" alt="Esquema del ensayo Vickers con probeta y penetrador" class="w-full h-auto object-contain rounded-lg clickable-image" data-title="Esquema del Ensayo Vickers" data-description="El penetrador piramidal crea una huella cuadrada en la superficie de la probeta. La medición de sus diagonales (d1, d2) y la fuerza (F) son los datos necesarios para calcular la dureza." onerror="this.onerror=null;this.src='https://placehold.co/800x600/e2e8f0/94a3b8?text=Esquema+del+Ensayo';">
                 </div>
             </div>
         </section>
@@ -833,13 +829,13 @@
             const nextNav = document.getElementById('presentation-nav-next');
             const prevBtn = prevNav.querySelector('button');
             const nextBtn = nextNav.querySelector('button');
-            const presentationSlides = Array.from(document.querySelectorAll('section'));
+            
             let presentationModeActive = false;
             let currentSlide = 0;
 
             function updateNavButtons() {
                 prevBtn.disabled = currentSlide === 0;
-                nextBtn.disabled = currentSlide === presentationSlides.length - 1;
+                nextBtn.disabled = currentSlide === allSlides.length - 1;
             }
 
             playBtn.addEventListener('click', () => {
@@ -852,8 +848,8 @@
                     prevNav.style.pointerEvents = 'auto';
                     nextNav.style.pointerEvents = 'auto';
                     document.documentElement.style.scrollSnapType = 'y mandatory';
-                    presentationSlides.forEach(slide => slide.style.scrollSnapAlign = 'start');
-                    presentationSlides[currentSlide].scrollIntoView({behavior: 'smooth'});
+                    allSlides.forEach(slide => slide.style.scrollSnapAlign = 'start');
+                    allSlides[currentSlide].scrollIntoView({behavior: 'smooth'});
                     updateNavButtons();
                 } else {
                     playIcon.classList.remove('hidden');
@@ -863,28 +859,28 @@
                     prevNav.style.pointerEvents = 'none';
                     nextNav.style.pointerEvents = 'none';
                     document.documentElement.style.scrollSnapType = '';
-                    presentationSlides.forEach(slide => slide.style.scrollSnapAlign = '');
+                    allSlides.forEach(slide => slide.style.scrollSnapAlign = '');
                 }
             });
 
             nextBtn.addEventListener('click', () => {
-                if (currentSlide < presentationSlides.length - 1) {
+                if (currentSlide < allSlides.length - 1) {
                     currentSlide++;
-                    presentationSlides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                    allSlides[currentSlide].scrollIntoView({ behavior: 'smooth' });
                 }
             });
 
             prevBtn.addEventListener('click', () => {
                 if (currentSlide > 0) {
                     currentSlide--;
-                    presentationSlides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+                    allSlides[currentSlide].scrollIntoView({ behavior: 'smooth' });
                 }
             });
 
              const slideObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                       const intersectingSlideIndex = presentationSlides.findIndex(slide => slide.id === entry.target.id);
+                       const intersectingSlideIndex = allSlides.findIndex(slide => slide.id === entry.target.id);
                        if (intersectingSlideIndex !== -1) {
                            currentSlide = intersectingSlideIndex;
                            if(presentationModeActive){
@@ -895,7 +891,7 @@
                 });
             }, { threshold: 0.6 });
 
-            presentationSlides.forEach(slide => slideObserver.observe(slide));
+            allSlides.forEach(slide => slideObserver.observe(slide));
             
             // Image Modal Logic
             const modal = document.getElementById('image-modal');
@@ -906,10 +902,13 @@
 
             document.querySelectorAll('.clickable-image').forEach(img => {
                 img.addEventListener('click', () => {
-                    const contentContainer = img.closest('.app-content');
+                    const titleText = img.dataset.title || img.closest('.card, section').querySelector('h2, h3, h4')?.textContent || 'Imagen';
+                    const descriptionText = img.dataset.description || img.closest('div').querySelector('p:not(.font-semibold)')?.textContent || '';
+                    
                     modalImg.src = img.src;
-                    modalTitle.textContent = contentContainer.querySelector('h3').textContent;
-                    modalDescription.textContent = contentContainer.querySelector('p').textContent;
+                    modalTitle.textContent = titleText;
+                    modalDescription.textContent = descriptionText;
+
                     modal.classList.remove('hidden');
                     setTimeout(() => {
                         modal.classList.remove('opacity-0');
