@@ -10,14 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
     <!-- Chosen Palette: Serene Tech (Background: #FDFDFB, Text: #333333, Primary: #2D5A6C, Accent: #A58D7B) -->
-    <!-- Application Structure Plan: A single-page, multi-section layout designed for guided discovery. It starts with a broad introduction, then drills down into the 'how' (interactive procedure), 'what' (formula calculator), and 'what for' (materials comparison and applications). This task-oriented flow (Understand -> Calculate -> Compare -> Apply) is more intuitive for learning than a linear report structure, encouraging interaction at each stage. Navigation is handled by a sticky header for easy access to all sections. -->
+    <!-- Application Structure Plan: A single-page, multi-section layout designed for guided discovery, following the user's script. Each major point from the script is a section, allowing for a structured presentation flow. Interactive elements like tabs, modals, and charts are used to engage the user and clarify complex topics. -->
     <!-- Visualization & Content Choices:
-    - Intro: HTML/CSS diagram to visually hook the user. Goal: Inform/Engage.
-    - Procedure: Interactive HTML tabs. Goal: Organize/Explain. Method: JS toggles content visibility. Justification: Breaks down a complex process into manageable, user-controlled steps.
-    - Formula: Interactive calculator. Goal: Inform/Engage. Method: JS function on input fields. Justification: Makes an abstract formula practical and understandable.
-    - Materials: Interactive Chart.js horizontal bar chart with a logarithmic scale and category filter. Goal: Compare/Explore. Justification: Effectively compares materials with vast differences in hardness values. The filter allows users to focus on specific material groups, enhancing data exploration.
-    - Applications: Interactive HTML tabs. Goal: Organize/Explain. Method: JS toggles content. Justification: Presents distinct use cases cleanly without cluttering the page.
-    - Library/Method: Vanilla JS for all interactions and Chart.js for visualization.
+    - Cover: Interactive cover activated by click, not hover, to avoid accidental triggering.
+    - Presentation Mode: Full-screen capability with slide-by-slide navigation using arrows.
+    - Image Viewer: All key images are clickable, opening a modal with a larger view, title, and description for detailed examination.
+    - Content Sections: Directly mapped from the user-provided script, ensuring all topics are covered in the correct order.
+    - Interactive Elements: Tabs for the procedure, a calculator for the formula, and a filterable chart for material comparison.
+    - Library/Method: Vanilla JS for all interactions and Chart.js for visualization, ensuring compatibility and speed.
     -->
     <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
@@ -182,12 +182,11 @@
             <h1 class="text-xl md:text-2xl font-bold text-[#2D5A6C]">Ensayo Vickers</h1>
             <div class="hidden md:flex flex-wrap items-center justify-center space-x-4 lg:space-x-6">
                 <a href="#intro" class="nav-link font-semibold pb-1">Introducción</a>
-                <a href="#proceso" class="nav-link font-semibold pb-1">Proceso</a>
-                <a href="#calculadora" class="nav-link font-semibold pb-1">Cálculo</a>
+                <a href="#procedimiento" class="nav-link font-semibold pb-1">Procedimiento</a>
+                <a href="#formula" class="nav-link font-semibold pb-1">Fórmula y Normas</a>
                 <a href="#aplicaciones" class="nav-link font-semibold pb-1">Aplicaciones</a>
+                <a href="#ventajas" class="nav-link font-semibold pb-1">Veredicto</a>
                 <a href="#videos" class="nav-link font-semibold pb-1">Videos</a>
-                <a href="#conversor" class="nav-link font-semibold pb-1">Conversor</a>
-                <a href="#ventajas" class="nav-link font-semibold pb-1">Ventajas</a>
                 <a href="#referencias" class="nav-link font-semibold pb-1">Referencias</a>
             </div>
             <button id="mobile-menu-button" class="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#2D5A6C]">
@@ -197,12 +196,11 @@
         </nav>
         <div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4">
             <a href="#intro" class="block py-2 text-center nav-link">Introducción</a>
-            <a href="#proceso" class="block py-2 text-center nav-link">Proceso</a>
-            <a href="#calculadora" class="block py-2 text-center nav-link">Cálculo</a>
+            <a href="#procedimiento" class="block py-2 text-center nav-link">Procedimiento</a>
+            <a href="#formula" class="block py-2 text-center nav-link">Fórmula y Normas</a>
             <a href="#aplicaciones" class="block py-2 text-center nav-link">Aplicaciones</a>
+            <a href="#ventajas" class="block py-2 text-center nav-link">Veredicto</a>
             <a href="#videos" class="block py-2 text-center nav-link">Videos</a>
-            <a href="#conversor" class="block py-2 text-center nav-link">Conversor</a>
-            <a href="#ventajas" class="block py-2 text-center nav-link">Ventajas</a>
             <a href="#referencias" class="block py-2 text-center nav-link">Referencias</a>
         </div>
     </header>
@@ -211,52 +209,42 @@
         <section id="intro" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center">
-                    <h2 class="text-3xl md:text-5xl font-bold text-[#2D5A6C] mb-4">Introducción: La Huella de la Precisión</h2>
+                    <h2 class="text-3xl md:text-5xl font-bold text-[#2D5A6C] mb-4">Introducción: La Medida de la Resistencia</h2>
                     <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-600 mb-12">
-                        La dureza se define como la resistencia de un material a la deformación plástica localizada. El ensayo Vickers es reconocido como uno de los métodos más precisos y versátiles para cuantificar esta propiedad, a menudo denominado el "ensayo universal" por su amplio rango de aplicaciones, capaz de medir desde metales muy blandos hasta las cerámicas más duras. Una huella nítida y simétrica no es casual, sino la consecuencia de un procedimiento meticuloso y una preparación de muestra impecable.
+                        En ciencia de materiales, la dureza es la resistencia a la deformación plástica localizada. Es crítica para la seguridad y vida útil de componentes, desde un bisturí hasta una turbina. El ensayo Vickers es el método más preciso y versátil para cuantificar esta propiedad.
+                    </p>
+                </div>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start max-w-4xl mx-auto mb-12">
+                        <div class="text-center">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Vickers_hardness_impression.jpg/600px-Vickers_hardness_impression.jpg" alt="Huella Vickers" class="mx-auto h-48 object-contain mb-2 rounded-lg clickable-image" data-title="Huella de Precisión" data-description="Una indentación Vickers perfecta: piramidal, nítida y simétrica. Su medición precisa es la clave del ensayo.">
+                        </div>
+                        <div class="text-center">
+                            <img src="https://www.materialtest.it/wp-content/uploads/2021/03/Brinell-e-Vickers.jpg" alt="Comparativa Brinell vs Vickers" class="mx-auto h-48 object-contain mb-2 rounded-lg clickable-image" data-title="Evolución de la Medición" data-description="Comparación visual entre la gran huella del método Brinell (izquierda) y la pequeña y precisa huella del método Vickers (derecha).">
+                        </div>
+                    </div>
+                <div class="text-center">
+                    <h3 class="text-2xl md:text-3xl font-bold text-[#2D5A6C] my-12">Contexto Histórico y Desarrollo</h3>
+                    <p class="max-w-3xl mx-auto text-lg md:text-xl text-gray-600 mb-12">
+                       Desarrollado entre 1921 y 1925 por Robert L. Smith y George E. Sandland en los laboratorios de Vickers Ltd., el ensayo surgió de la necesidad de superar las limitaciones del método Brinell para ensayar los nuevos aceros tratados y componentes de precisión de la época.
                     </p>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto mb-12">
                         <div class="text-center">
-                            <img src="https://c8.alamy.com/comp/2KFBP2D/vickers-armstrong-works-sheffield-2KFBP2D.jpg" alt="Fábrica de Vickers-Armstrongs en Sheffield" class="mx-auto h-40 object-contain mb-2 rounded-lg clickable-image" data-title="Vickers Ltd." data-description="Fábrica de Vickers en Sheffield, cuna del ensayo de dureza y de importantes avances en la metalurgia del siglo XX." onerror="this.onerror=null;this.src='https://placehold.co/400x250/e2e8f0/94a3b8?text=Fábrica+Vickers';">
-                            <p class="text-sm font-semibold text-gray-600">Fábrica de Vickers en Sheffield, cuna del ensayo.</p>
+                            <img src="https://c8.alamy.com/comp/2KFBP2D/vickers-armstrong-works-sheffield-2KFBP2D.jpg" alt="Fábrica de Vickers-Armstrongs en Sheffield" class="mx-auto h-40 object-contain mb-2 rounded-lg clickable-image" data-title="Vickers Ltd. (c. 1920)" data-description="La innovación fue impulsada por los desafíos de ingeniería de vanguardia en Vickers Ltd., que diversificó su producción hacia aeronaves y maquinaria de precisión.">
+                            
                         </div>
                         <div class="text-center">
-                             <!-- PARA AÑADIR/CAMBIAR FOTO DE LOS CREADORES: Reemplaza la URL de abajo. -->
-                            <img src="https://placehold.co/400x250/e2e8f0/94a3b8?text=Foto+de+Smith+y+Sandland" alt="Robert L. Smith y George E. Sandland, creadores del método" class="mx-auto h-40 object-contain mb-2 rounded-lg clickable-image" data-title="Los Inventores" data-description="Robert L. Smith y George E. Sandland, los ingenieros de Vickers Ltd. que desarrollaron el método entre 1921 y 1925." onerror="this.onerror=null;this.src='https://placehold.co/400x250/e2e8f0/94a3b8?text=Creadores';">
-                            <p class="text-sm font-semibold text-gray-600">Robert L. Smith y George E. Sandland, los inventores.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="h-line mb-12"></div>
-                
-                <div class="max-w-5xl mx-auto card p-8">
-                     <p class="text-center text-xl font-semibold mb-6 text-[#2D5A6C]">Principio Fundamental: La Pirámide de Diamante</p>
-                     <p class="text-center text-gray-700 mb-8">El núcleo del método reside en su indentador: una pirámide de diamante con un ángulo de 136°. Este diseño garantiza que la huella sea geométricamente similar sin importar la carga, permitiendo una única escala continua (HV) y una compatibilidad con la escala Brinell (HB) en durezas medias.</p>
-                    <div class="flex flex-col md:flex-row items-center justify-around gap-6">
-                        <div class="text-center w-full md:w-1/3">
-                            <img src="https://www.ametektest.com/-/media/ametektest/images/products/hardnesstesters/vickers-indentor_300x300.jpg?h=300&w=300&la=en&hash=F2F50920C0D76536F2C81DF4487DF3B8" alt="Penetrador de diamante Vickers" class="mx-auto h-32 object-contain mb-4 rounded clickable-image" data-title="1. Penetrador de Diamante" data-description="Una pirámide de diamante con un ángulo de 136°, que no se deforma, presiona el material." onerror="this.onerror=null;this.src='https://placehold.co/200x200/e2e8f0/94a3b8?text=Penetrador';">
-                            <h3 class="font-bold text-lg">1. Penetrador de Diamante</h3>
-                        </div>
-                        <div class="text-4xl font-thin text-[#A58D7B] self-center hidden md:block">➔</div>
-                         <div class="text-center w-full md:w-1/3">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Vickers_hardness_impression.jpg/300px-Vickers_hardness_impression.jpg" alt="Huella de dureza Vickers" class="mx-auto h-32 object-contain mb-4 rounded clickable-image" data-title="2. Se crea una huella" data-description="Se aplica una fuerza controlada (F) durante un tiempo estándar (10-15s), dejando una huella microscópica." onerror="this.onerror=null;this.src='https://placehold.co/200x200/e2e8f0/94a3b8?text=Huella';">
-                            <h3 class="font-bold text-lg">2. Se crea una huella</h3>
-                        </div>
-                        <div class="text-4xl font-thin text-[#A58D7B] self-center hidden md:block">➔</div>
-                        <div class="text-center w-full md:w-1/3">
-                            <img src="https://www.qatm.com/images/800x800-qpix-control2-messrahmen.jpg" alt="Medición de la huella en microscopio con retícula" class="mx-auto h-32 object-contain mb-4 rounded clickable-image" data-title="3. Se mide la huella" data-description="Se miden las diagonales (d) de la huella. Un material más duro deja una huella más pequeña." onerror="this.onerror=null;this.src='https://placehold.co/200x200/e2e8f0/94a3b8?text=Medición';">
-                            <h3 class="font-bold text-lg">3. Se mide la huella</h3>
+                            <!-- PARA AÑADIR/CAMBIAR FOTO DE LOS CREADORES: Reemplaza la URL de abajo. -->
+                            <img src="https://placehold.co/400x250/e2e8f0/94a3b8?text=Foto+de+Smith+y+Sandland" alt="Robert L. Smith y George E. Sandland" class="mx-auto h-40 object-contain mb-2 rounded-lg clickable-image" data-title="Los Inventores" data-description="Robert L. Smith y George E. Sandland, los ingenieros de Vickers Ltd. que desarrollaron el método.">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section id="proceso" class="py-16 md:py-24 bg-gray-50">
+        <section id="procedimiento" class="py-16 md:py-24 bg-gray-50">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">El Procedimiento Estandarizado</h2>
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">El Procedimiento: El Arte de la Precisión</h2>
                     <p class="max-w-3xl mx-auto text-lg text-gray-600">
                         Regulado por normas como ISO 6507 y ASTM E384, el ensayo Vickers sigue un ciclo preciso para garantizar resultados repetibles y comparables a nivel mundial.
                     </p>
@@ -264,26 +252,26 @@
                 </div>
                 <div class="flex flex-col md:flex-row gap-8">
                     <div class="md:w-1/3">
-                        <div id="proceso-tabs" class="flex md:flex-col justify-center gap-4">
-                            <button data-target="paso1" class="proceso-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left active">1. Preparación de Muestra</button>
-                            <button data-target="paso2" class="proceso-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left">2. Ciclo de Indentación</button>
-                            <button data-target="paso3" class="proceso-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left">3. Medición Óptica</button>
+                        <div id="procedimiento-tabs" class="flex md:flex-col justify-center gap-4">
+                            <button data-target="paso1" class="procedimiento-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left active">1. Preparación de Muestra</button>
+                            <button data-target="paso2" class="procedimiento-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left">2. Ciclo de Indentación</button>
+                            <button data-target="paso3" class="procedimiento-tab tab text-lg font-semibold border-2 rounded-lg px-6 py-3 w-full text-left">3. Medición Óptica</button>
                         </div>
                     </div>
                     <div class="md:w-2/3">
-                        <div id="paso1" class="app-content card p-8">
+                        <div id="paso1" class="procedimiento-content app-content card p-8">
                              <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">Paso 1: Preparación de la Muestra</h3>
-                             <p class="text-gray-700 mb-4">Este es el paso más crítico. La superficie debe ser plana, lisa y limpia para obtener una huella nítida. Para microdureza se requiere un pulido a espejo. Una mala preparación conduce a resultados erróneos.</p>
+                             <p class="text-gray-700 mb-4">Este es el paso más crítico. La superficie debe ser plana, lisa y limpia. Para microdureza se requiere un pulido a espejo. Una mala preparación conduce a resultados erróneos.</p>
                             <img src="https://www.metallographic.com/images/Grinding-Polishing-2.jpg" alt="Pulido metalográfico a espejo" class="w-full h-auto object-cover rounded-lg clickable-image" onerror="this.onerror=null;this.src='https://placehold.co/600x300/e2e8f0/94a3b8?text=Pulido+a+Espejo';">
                         </div>
-                        <div id="paso2" class="app-content hidden card p-8">
+                        <div id="paso2" class="procedimiento-content app-content hidden card p-8">
                              <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">Paso 2: Ciclo de Indentación</h3>
-                             <p class="text-gray-700 mb-4">La fuerza se aplica de forma suave y controlada (típicamente en 7s), se mantiene constante durante un tiempo estándar (10-15s) para permitir la deformación plástica completa, y luego se retira suavemente.</p>
+                             <p class="text-gray-700 mb-4">La fuerza se aplica suavemente (7s), se mantiene constante (10-15s) para la deformación plástica, y se retira suavemente.</p>
                             <img src="https://www.tec-science.com/wp-content/uploads/2021/03/en-hardness-test-vickers-process.jpg" alt="Proceso de indentación Vickers sobre la probeta" class="w-full h-auto object-cover rounded-lg clickable-image" onerror="this.onerror=null;this.src='https://placehold.co/600x300/e2e8f0/94a3b8?text=Indentación';">
                         </div>
-                        <div id="paso3" class="app-content hidden card p-8">
+                        <div id="paso3" class="procedimiento-content app-content hidden card p-8">
                              <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">Paso 3: Medición Óptica de la Huella</h3>
-                             <p class="text-gray-700 mb-4">Con un microscopio, se miden ambas diagonales (d₁ y d₂) de la huella. Se calcula su promedio (d) para compensar distorsiones por recuperación elástica y anisotropía del material, asegurando una medición precisa.</p>
+                             <p class="text-gray-700 mb-4">Se miden ambas diagonales (d₁ y d₂) y se promedian para compensar distorsiones, asegurando una medición precisa.</p>
                             <img src="https://www.researchgate.net/profile/Enrique-Rocha-Rangel/publication/28211170/figure/fig4/AS:667825068699651@1536233310069/Micrografia-tipica-de-las-indentaciones-Vickers-50-MPa.png" alt="Huella de dureza Vickers en microscopio" class="w-full h-auto object-cover rounded-lg clickable-image" onerror="this.onerror=null;this.src='https://placehold.co/600x300/e2e8f0/94a3b8?text=Huella+Vickers';">
                         </div>
                     </div>
@@ -291,26 +279,11 @@
             </div>
         </section>
         
-        <section id="grafico-ilustrativo" class="py-16 md:py-24">
+        <section id="formula" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Gráfico Ilustrativo: Penetrador y Probeta</h2>
-                    <p class="max-w-3xl mx-auto text-lg text-gray-600">
-                        Esta ilustración muestra la relación geométrica entre el penetrador de diamante y la huella que deja en la probeta, que es la base de todo el cálculo.
-                    </p>
-                    <div class="h-line mt-6"></div>
-                </div>
-                <div class="max-w-3xl mx-auto card p-8">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c9/Vickers_hardness_test_schema.svg/500px-Vickers_hardness_test_schema.svg.png" alt="Esquema del ensayo Vickers con probeta y penetrador" class="w-full h-auto object-contain rounded-lg clickable-image" data-title="Esquema del Ensayo Vickers" data-description="El penetrador piramidal crea una huella cuadrada en la superficie de la probeta. La medición de sus diagonales (d1, d2) y la fuerza (F) son los datos necesarios para calcular la dureza." onerror="this.onerror=null;this.src='https://placehold.co/800x600/e2e8f0/94a3b8?text=Esquema+del+Ensayo';">
-                </div>
-            </div>
-        </section>
-
-        <section id="calculadora" class="py-16 md:py-24 bg-gray-50">
-            <div class="container mx-auto px-6">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">La Fórmula en Acción</h2>
-                    <p class="max-w-3xl mx-auto text-lg text-gray-600">El valor de dureza Vickers (HV) se calcula, no se mide directamente. Utiliza esta calculadora para entender cómo la fuerza y el tamaño de la huella determinan la dureza.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">El Lenguaje de la Dureza: Fórmula y Normas</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">El valor de dureza Vickers (HV) se calcula, no se mide directamente. La fórmula estandarizada y la notación correcta son el lenguaje universal que asegura la trazabilidad y reproducibilidad de la medida.</p>
                      <div class="h-line mt-6"></div>
                 </div>
 
@@ -338,15 +311,24 @@
                             <p id="resultadoLabel" class="text-gray-600 font-semibold">HV</p>
                         </div>
                     </div>
+                    <div class="mt-8 text-center">
+                        <h3 class="text-xl font-bold text-[#2D5A6C] mb-4">Marco Normativo</h3>
+                        <p class="text-gray-700">La confianza en este lenguaje universal se basa en normas como ISO 6507, ASTM E384 y la norma nacional IRAM-IAS U 500-110, que definen desde las tolerancias del diamante hasta el espaciado mínimo entre huellas. La norma IRAM, por ejemplo, incluye tablas de corrección para superficies curvas, una adición de gran valor práctico.</p>
+                         <div class="flex justify-center space-x-8 mt-4">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/ISO_logo_%282022%29.svg/320px-ISO_logo_%282022%29.svg.png" alt="Logo ISO" class="h-10 object-contain clickable-image" data-title="Norma ISO 6507" data-description="Estándar internacional principal para el ensayo de dureza Vickers.">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/ASTM_International_logo.svg/320px-ASTM_International_logo.svg.png" alt="Logo ASTM" class="h-10 object-contain clickable-image" data-title="Normas ASTM E384 / E92" data-description="Estándares de la Sociedad Americana para Pruebas y Materiales para micro y macrodureza.">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/IRAM_logo.svg/302px-IRAM_logo.svg.png" alt="Logo IRAM" class="h-10 object-contain clickable-image" data-title="Norma IRAM-IAS U 500-110" data-description="Norma nacional argentina, armonizada con los estándares internacionales.">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="aplicaciones" class="py-16 md:py-24">
+        <section id="aplicaciones" class="py-16 md:py-24 bg-gray-50">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
-                     <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Aplicaciones Industriales y de Investigación</h2>
-                     <p class="max-w-3xl mx-auto text-lg text-gray-600">La precisión y versatilidad del ensayo Vickers lo hacen indispensable en una multitud de campos. Explora las aplicaciones más comunes.</p>
+                     <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Aplicaciones Críticas en Ingeniería</h2>
+                     <p class="max-w-3xl mx-auto text-lg text-gray-600">Veremos casos donde una medición precisa de la dureza es la diferencia entre un componente que dura décadas y uno que falla catastróficamente.</p>
                      <div class="h-line mt-6"></div>
                 </div>
                 <div class="flex flex-col md:flex-row gap-8">
@@ -359,18 +341,18 @@
                     </div>
                     <div class="md:w-2/3">
                         <div id="app1" class="app-content card p-8">
-                             <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">🌡️ Control de Tratamientos Térmicos</h3>
-                             <p class="text-gray-700 mb-4">Es el método estándar para verificar la eficacia de tratamientos como la cementación o el temple. Se crean "perfiles de dureza" midiendo desde la superficie hacia el núcleo, para determinar con exactitud la Profundidad de Dureza Efectiva (CHD), un parámetro vital para engranajes y ejes.</p>
+                             <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">🌡️ La Armadura Invisible: Control de Tratamientos Térmicos</h3>
+                             <p class="text-gray-700 mb-4">Es el método estándar para verificar la eficacia de tratamientos como la cementación o el temple. Se crean "perfiles de dureza" para determinar con exactitud la Profundidad de Dureza Efectiva (CHD), un parámetro vital para engranajes, ejes y rodamientos.</p>
                              <img src="https://www.zwickroell.com/wp-content/uploads/2021/05/Verlauf-der-Haerte-in-Abhaengigkeit-vom-Abstand-von-der-Oberflaeche-bei-der-Einsatzhaertetiefe-CHD-650x400.png" alt="Gráfico de perfil de dureza" class="w-full h-auto object-cover rounded-lg clickable-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/94a3b8?text=Perfil+de+Dureza';">
                         </div>
                         <div id="app2" class="app-content hidden card p-8">
-                             <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">🔗 Análisis de Uniones Soldadas</h3>
-                             <p class="text-gray-700 mb-4">El calor de la soldadura altera la microestructura del material. Con Vickers se crean "mapas de dureza" para visualizar la distribución de propiedades en la unión y detectar zonas frágiles o reblandecidas. Es un requisito en la calificación de procedimientos de soldadura.</p>
+                             <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">🔗 El Talón de Aquiles: Análisis de Uniones Soldadas</h3>
+                             <p class="text-gray-700 mb-4">Con Vickers se crean "mapas de dureza" para visualizar la distribución de propiedades en la unión soldada y su Zona Afectada por el Calor (ZAT), detectando zonas frágiles que podrían causar fallas catastróficas. Es un requisito en la calificación de procedimientos de soldadura.</p>
                              <img src="https://www.researchgate.net/profile/Nicollas-Arruda/publication/335104976/figure/fig7/AS:790104193568771@1565388175512/Mapas-de-microdureza-em-escala-Vickers-Hardness-Vickers-HV-no-aco-SAE-1045-com.png" alt="Mapa de dureza en soldadura" class="w-full h-auto object-cover rounded-lg clickable-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/94a3b8?text=Mapa+de+Dureza';">
                         </div>
                         <div id="app3" class="app-content hidden card p-8">
-                             <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">🔬 Microdureza y Capas Finas</h3>
-                             <p class="text-gray-700 mb-4">La capacidad de usar cargas muy ligeras (microdureza) permite medir con precisión recubrimientos delgados (PVD, galvanizados), componentes electrónicos, o incluso fases individuales dentro de la microestructura de un material, siendo clave para la investigación y el desarrollo.</p>
+                             <h3 class="text-2xl font-bold text-[#2D5A6C] mb-4">🔬 Microdureza: Capas Finas, Fases y Materiales Frágiles</h3>
+                             <p class="text-gray-700 mb-4">La capacidad de usar cargas muy ligeras permite medir con precisión recubrimientos PVD, fases individuales en una microestructura (ferrita, martensita), y materiales frágiles como las cerámicas, donde otros métodos fallan.</p>
                              <img src="https://www.innovatest-europe.com/wp-content/uploads/2019/08/weld-inspection-hardness-testing-1024x768.jpg" alt="Ensayo de microdureza en laboratorio" class="w-full h-auto object-cover rounded-lg clickable-image" onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/94a3b8?text=Microdureza';">
                         </div>
                     </div>
@@ -378,7 +360,7 @@
             </div>
         </section>
 
-        <section id="comparativa" class="py-16 md:py-24 bg-gray-50">
+        <section id="comparativa" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Comparando Materiales</h2>
@@ -403,7 +385,7 @@
             </div>
         </section>
 
-        <section id="videos" class="py-16 md:py-24">
+        <section id="videos" class="py-16 md:py-24 bg-gray-50">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Videos Explicativos</h2>
@@ -435,7 +417,7 @@
             </div>
         </section>
 
-        <section id="conversor" class="py-16 md:py-24 bg-gray-50">
+        <section id="conversor" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                     <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Conversor Interactivo de Dureza</h2>
@@ -464,11 +446,11 @@
             </div>
         </section>
 
-        <section id="ventajas" class="py-16 md:py-24">
+        <section id="ventajas" class="py-16 md:py-24 bg-gray-50">
             <div class="container mx-auto px-6">
                  <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Ventajas y Limitaciones</h2>
-                    <p class="max-w-3xl mx-auto text-lg text-gray-600">Ningún método es perfecto. Aquí se presenta una visión equilibrada del ensayo Vickers para entender cuándo es la mejor opción.</p>
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Veredicto Final: El Equilibrio entre Precisión y Pragmatismo</h2>
+                    <p class="max-w-3xl mx-auto text-lg text-gray-600">Ningún método es perfecto. Aquí se presenta una visión equilibrada del ensayo Vickers, enmarcada en el "Trilema de los Ensayos de Dureza": una compensación entre Velocidad, Precisión y Versatilidad.</p>
                     <div class="h-line mt-6"></div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -476,16 +458,16 @@
                         <h3 class="text-2xl font-bold text-green-600 mb-4 text-center">✅ Ventajas</h3>
                         <div class="space-y-4">
                             <div class="card p-6 advantage-card">
-                                <h4 class="font-bold text-lg">Alta Precisión</h4>
-                                <p class="text-gray-600">Considerado el más preciso de los ensayos de dureza gracias a su penetrador de diamante y la medición óptica.</p>
+                                <h4 class="font-bold text-lg">Alta Precisión y Exactitud</h4>
+                                <p class="text-gray-600">Considerado el más exacto y repetible gracias a su indentador de diamante y medición óptica.</p>
                             </div>
                              <div class="card p-6 advantage-card">
-                                <h4 class="font-bold text-lg">Escala Única</h4>
-                                <p class="text-gray-600">Usa una sola escala continua (HV) para todos los materiales, eliminando la necesidad de conversiones.</p>
+                                <h4 class="font-bold text-lg">Escala Única y Universal</h4>
+                                <p class="text-gray-600">Mide casi cualquier material en una escala continua, eliminando la necesidad de conversiones y simplificando la comparación.</p>
                             </div>
                              <div class="card p-6 advantage-card">
-                                <h4 class="font-bold text-lg">Gran Versatilidad</h4>
-                                <p class="text-gray-600">Aplicable a casi cualquier material y espesor, desde plomo hasta cerámica y láminas delgadas.</p>
+                                <h4 class="font-bold text-lg">Funcionalmente No Destructivo</h4>
+                                <p class="text-gray-600">En microdureza, la huella es tan pequeña que permite ensayar piezas finales sin comprometer su integridad.</p>
                             </div>
                         </div>
                     </div>
@@ -494,15 +476,15 @@
                         <div class="space-y-4">
                              <div class="card p-6 limitation-card">
                                 <h4 class="font-bold text-lg">Proceso Lento</h4>
-                                <p class="text-gray-600">La preparación de la muestra y la medición óptica hacen que sea más lento que otros métodos como el Rockwell.</p>
+                                <p class="text-gray-600">La meticulosa preparación de la muestra y la medición óptica lo hacen inadecuado para producción en masa, donde se prefiere Rockwell por su velocidad.</p>
                             </div>
                              <div class="card p-6 limitation-card">
-                                <h4 class="font-bold text-lg">Preparación Crítica</h4>
-                                <p class="text-gray-600">Requiere una superficie perfectamente pulida. La calidad del resultado depende de la preparación.</p>
+                                <h4 class="font-bold text-lg">Preparación Crítica y Costosa</h4>
+                                <p class="text-gray-600">La fiabilidad del resultado depende al 100% de una superficie perfectamente pulida, lo que requiere tiempo, habilidad y equipo metalográfico.</p>
                             </div>
                              <div class="card p-6 limitation-card">
-                                <h4 class="font-bold text-lg">Costo del Equipo</h4>
-                                <p class="text-gray-600">Los durómetros con sistemas ópticos de precisión suelen ser más costosos.</p>
+                                <h4 class="font-bold text-lg">No Ideal para Materiales Heterogéneos</h4>
+                                <p class="text-gray-600">La pequeña huella puede no ser representativa en materiales con estructuras no homogéneas (ej. fundiciones), donde la gran huella de Brinell es más útil.</p>
                             </div>
                         </div>
                     </div>
@@ -510,7 +492,7 @@
             </div>
         </section>
         
-        <section id="referencias" class="py-16 md:py-24 bg-gray-50">
+        <section id="referencias" class="py-16 md:py-24">
             <div class="container mx-auto px-6">
                 <div class="text-center mb-12">
                      <h2 class="text-3xl md:text-4xl font-bold text-[#2D5A6C] mb-4">Referencias Bibliográficas</h2>
@@ -521,9 +503,10 @@
                     <ul class="list-disc list-inside space-y-2 text-gray-700">
                         <li>**Norma ISO 6507**: "Materiales metálicos — Ensayo de dureza Vickers". Es el estándar internacional que define el procedimiento.</li>
                         <li>**Norma ASTM E384**: "Standard Test Method for Microindentation Hardness of Materials". Estándar clave para ensayos de microdureza.</li>
-                        <li>**Norma ASTM E140**: "Standard Hardness Conversion Tables for Metals". Define las tablas de conversión entre diferentes escalas de dureza.</li>
-                        <li>**Callister, W. D., & Rethwisch, D. G.** (2018). *Materials Science and Engineering: An Introduction*. Wiley. (Libro de texto fundamental en ciencia de materiales).</li>
-                        <li>**Struers ApS** - *Materialography Knowledge Base*. ([struers.com](https://www.struers.com/es-ES/Knowledge/Hardness-testing/Vickers)). Fabricante líder de equipos y fuente técnica de referencia.</li>
+                        <li>**Norma ASTM E92**: "Standard Test Methods for Vickers Hardness of Metallic Materials".</li>
+                        <li>**Norma IRAM-IAS U 500-110**: "Acero. Método de ensayo de dureza Vickers".</li>
+                        <li>**Callister, W. D., & Rethwisch, D. G.** (2018). *Materials Science and Engineering: An Introduction*. Wiley.</li>
+                        <li>**Smith, R. L., & Sandland, G. E.** (1922). *An Accurate Method of Determining the Hardness of Metals...*. Proceedings of the Institution of Mechanical Engineers.</li>
                     </ul>
                 </div>
             </div>
@@ -634,7 +617,7 @@
                 });
             };
 
-            setupTabs('.proceso-tab', '.proceso-content', 'active');
+            setupTabs('.procedimiento-tab', '.procedimiento-content', 'active');
             setupTabs('.app-tab', '.app-content', 'active');
 
 
@@ -902,7 +885,7 @@
 
             document.querySelectorAll('.clickable-image').forEach(img => {
                 img.addEventListener('click', () => {
-                    const titleText = img.dataset.title || img.closest('.card, section').querySelector('h2, h3, h4')?.textContent || 'Imagen';
+                    const titleText = img.dataset.title || img.closest('.app-content, div').querySelector('h3, h4, p.font-semibold')?.textContent || 'Imagen';
                     const descriptionText = img.dataset.description || img.closest('div').querySelector('p:not(.font-semibold)')?.textContent || '';
                     
                     modalImg.src = img.src;
